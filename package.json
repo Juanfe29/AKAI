@@ -9,11 +9,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "astro preview --host --port ${PORT:-4321}",
+    "start": "sirv dist --host 0.0.0.0 --port ${PORT:-4321} --etag --quiet",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.1.6"
+    "astro": "^7.1.6",
+    "sirv-cli": "^3.0.1"
   }
 }
