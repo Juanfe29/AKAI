@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const countries = ['ESPAÑA', 'HONDURAS', 'PANAMÁ', 'COLOMBIA', 'PERÚ', 'CHILE'];
+
+const crops = [
+  'Banano', 'Palma de aceite', 'Palma de coco', 'Caña', 'Cítricos', 'Rosa', 'Arándano', 'Plátano', 'Papa',
+  'Aguacate', 'Uva', 'Arroz', 'Maíz', 'Soya', 'Frijol', 'Pastos', 'Alcachofa',
+];
+
+const clientLogos = [
+  { src: '/assets/logos/grupo-hame.png', alt: 'Grupo Hame', dark: false },
+  { src: '/assets/logos/rohu.png', alt: 'ROHU Innovations', dark: false },
+  { src: '/assets/logos/grupo-monteverde.png', alt: 'Grupo Monteverde', dark: false },
+  { src: '/assets/logos/asocolblue.png', alt: 'AsocolBlue', dark: false },
+  { src: '/assets/logos/cliente-blanco.png', alt: 'Cliente', dark: true },
+  { src: '/assets/logos/hortifrut.svg', alt: 'Hortifrut', dark: false },
+  { src: '/assets/logos/cosmoagro.svg', alt: 'Cosmoagro', dark: false },
+  { src: '/assets/logos/timac-agro.svg', alt: 'Timac Agro', dark: false },
+  { src: '/assets/logos/alliance-cgiar.svg', alt: 'Alliance Bioversity — CIAT', dark: true },
+  { src: '/assets/logos/kelpak.svg', alt: 'Kelpak', dark: true },
+];
+
+const segments = [
+  { num: '01', title: 'Empresas agroindustriales', who: 'Productores de frutas, café, arroz, palma, caña, banano, flores y otros cultivos de alto valor.', need: 'Maximizar productividad, calidad y eficiencia en el uso de recursos.' },
+  { num: '02', title: 'Nutrición vegetal y bioinsumos', who: 'Fabricantes de fertilizantes, bioestimulantes, microorganismos y productos biológicos.', need: 'Validar científicamente el desempeño de sus tecnologías y diferenciar sus productos.' },
+  { num: '03', title: 'Alimentos y cadenas de abastecimiento', who: 'Compañías con metas de abastecimiento sostenible y reducción de huella ambiental.', need: 'Indicadores de productividad, regeneración y descarbonización.' },
+  { num: '04', title: 'Minería, energía e industria', who: 'Empresas con programas de restauración ecológica, recuperación de suelos y compensación ambiental.', need: 'Sistemas MRV y monitoreo del desempeño biológico de sus intervenciones.' },
+  { num: '05', title: 'Proyectos de carbono y agricultura regenerativa', who: 'Organizaciones de captura de carbono, biochar, compostaje y regeneración de suelos.', need: 'Medir, reportar y verificar resultados ambientales con rigor técnico.' },
+  { num: '06', title: 'Investigación, universidades y gobierno', who: 'Instituciones que ejecutan proyectos de I+D, innovación y transferencia tecnológica.', need: 'Herramientas avanzadas de monitoreo fisiológico y análisis de datos.' },
+  { num: '07', title: 'Fondos de inversión y AgTech', who: 'Organizaciones que evalúan desempeño técnico y riesgo de proyectos agrícolas.', need: 'Modelos predictivos y métricas objetivas para decisiones de inversión.' },
+];
+---
+
+<BaseLayout
+  lang="es"
+  slug="track-record"
+  title="Trayectoria — AKAI"
+  description="10 años aplicando la teoría. Clientes satisfechos en España, Honduras, Panamá, Colombia, Perú y Chile. 18 cultivos asesorados en América Latina."
+  footerDark={true}
+>
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__years">10 años</div>
+      <h1 class="hero__head">Aplicando la teoría.</h1>
+    </div>
+  </section>
+
+  <section class="clients">
+    <h2 class="clients__label">Clientes satisfechos en</h2>
+    <div class="clients__chips">
+      {countries.map((c) => <span class="clients__chip">{c}</span>)}
+    </div>
+  </section>
+
+  <section class="crops">
+    <div class="crops__stat">
+      <div class="crops__count">18</div>
+      <div class="crops__label">cultivos asesorados</div>
+    </div>
+    <div class="crops__chips">
+      {crops.map((cr) => <span class="crops__chip">{cr}</span>)}
+    </div>
+  </section>
+
+  <section class="logos">
+    <h2 class="logos__label">Clientes y aliados</h2>
+    <div class="logos__grid">
+      {
+        clientLogos.map((lg) => (
+          <div class:list={['logos__cell', { 'logos__cell--dark': lg.dark }]}>
+            <img src={lg.src} alt={lg.alt} width="120" height="48" loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="segments">
+    <div class="segments__intro">
+      <div class="segments__tag">Potenciales clientes</div>
+      <h2 class="segments__head">
+        Siete segmentos que convierten datos biológicos y ambientales en decisiones estratégicas.
+      </h2>
+    </div>
+    <div class="segments__grid">
+      {
+        segments.map((sg) => (
+          <div class="segments__cell">
+            <div class="segments__num">{sg.num}</div>
+            <h3 class="segments__title">{sg.title}</h3>
+            <p class="segments__who">{sg.who}</p>
+            <p class="segments__need">{sg.need}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="segments__closing">
+      El perfil ideal maneja cultivos de alto valor o grandes extensiones, invierte en innovación, necesita
+      evidencia científica y decide con indicadores cuantitativos y retorno de inversión.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    width: 100%;
+    padding: 170px var(--section-padding-x) var(--space-9);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero__inner {
+    max-width: 900px;
+  }
+  .hero__years {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(48px, 7vw, 110px);
+    line-height: 1;
+    color: var(--color-accent);
+  }
+  .hero__head {
+    margin: var(--space-3) 0 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(24px, 3.4vw, 44px);
+    line-height: 1.15;
+  }
+
+  .clients {
+    width: 100%;
+    padding: var(--space-9) var(--section-padding-x) var(--space-10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .clients__label {
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .clients__chips {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    max-width: 820px;
+  }
+  .clients__chip {
+    padding: 8px 16px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sharp);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .crops {
+    width: 100%;
+    padding: 0 var(--section-padding-x) var(--space-14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+  .crops__stat {
+    text-align: center;
+  }
+  .crops__count {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: clamp(28px, 3.4vw, 44px);
+    color: var(--color-ink);
+  }
+  .crops__label {
+    margin-top: var(--space-1);
+    font-size: 14px;
+    color: var(--color-neutral-600);
+  }
+  .crops__chips {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .crops__chip {
+    padding: 7px 14px;
+    background: var(--color-neutral-100);
+    border-radius: var(--radius-sharp);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-neutral-700);
+  }
+
+  .logos {
+    width: 100%;
+    padding: 0 var(--section-padding-x) var(--space-15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .logos__label {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .logos__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-4);
+    max-width: var(--content-max-width);
+    width: 100%;
+  }
+  .logos__cell {
+    height: 90px;
+    border: 1px solid var(--color-border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    background: var(--color-paper);
+  }
+  .logos__cell--dark {
+    background: var(--color-ink);
+  }
+  .logos__cell img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .segments {
+    width: 100%;
+    padding: var(--space-15) var(--section-padding-x);
+    background: var(--color-ink);
+  }
+  .segments__intro {
+    max-width: var(--content-max-width);
+    margin: 0 auto var(--space-7);
+  }
+  .segments__tag {
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-tint);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+  .segments__head {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(22px, 2.8vw, 38px);
+    line-height: 1.2;
+  }
+  .segments__grid {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .segments__cell {
+    background: var(--color-ink);
+    padding: var(--space-7) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .segments__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent-tint);
+  }
+  .segments__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 17px;
+    color: #fff;
+    line-height: 1.25;
+  }
+  .segments__who {
+    margin: 0;
+    font-size: var(--text-small);
+    color: #c9c9c9;
+    line-height: 1.5;
+  }
+  .segments__need {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-neutral-400);
+    line-height: 1.5;
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--color-accent);
+  }
+  .segments__closing {
+    max-width: var(--content-max-width);
+    margin: var(--space-7) auto 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: clamp(16px, 1.8vw, 22px);
+    color: var(--color-accent-tint);
+    line-height: 1.4;
+  }
+</style>

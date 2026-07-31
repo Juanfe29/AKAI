@@ -1,0 +1,263 @@
+---
+import { nav, altPath, type Lang } from '../i18n/site';
+
+interface Props {
+  lang: Lang;
+  slug: string; // route slug from routes[] in i18n/site.ts, used for active-link + lang-switch target
+}
+
+const { lang, slug } = Astro.props;
+const t = nav[lang];
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+const switchHref = altPath(slug, otherLang);
+const base = `/${lang}`;
+
+const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
+---
+
+<nav class="nav">
+  <a href={`${base}/`} class="nav__logo">
+    <img src="/assets/akai-logo-dark.png" alt="AKAI" width="120" height="30" />
+  </a>
+
+  <div class="nav__links">
+    <a href={`${base}/`} class:list={['nav__link', { 'nav__link--active': isActive('') }]}>{t.home}</a>
+    <a href={`${base}/vision/`} class:list={['nav__link', { 'nav__link--active': isActive('vision') }]}>{t.vision}</a>
+    <a href={`${base}/process/`} class:list={['nav__link', { 'nav__link--active': isActive('process') }]}>{t.process}</a>
+
+    <div class="nav__dropdown" data-dropdown>
+      <button
+        type="button"
+        class="nav__link nav__dropdown-trigger"
+        aria-expanded="false"
+        aria-haspopup="true"
+        data-dropdown-trigger
+      >
+        {t.caseStudies}
+      </button>
+      <div class="nav__dropdown-panel" data-dropdown-panel hidden>
+        <a href={`${base}/case-studies/palm/`}>{t.casePalm}</a>
+        <a href={`${base}/case-studies/roots/`}>{t.caseRoots}</a>
+      </div>
+    </div>
+
+    <a href={`${base}/technology/`} class:list={['nav__link', { 'nav__link--active': isActive('technology') }]}>{t.technology}</a>
+    <a href={`${base}/track-record/`} class:list={['nav__link', { 'nav__link--active': isActive('track-record') }]}>{t.trackRecord}</a>
+    <a href={`${base}/team/`} class:list={['nav__link', { 'nav__link--active': isActive('team') }]}>{t.team}</a>
+    <a href={`${base}/contact/`} class:list={['nav__link', { 'nav__link--active': isActive('contact') }]}>{t.contact}</a>
+  </div>
+
+  <div class="nav__actions">
+    <div class="nav__lang" role="group" aria-label="Language">
+      <a href={lang === 'es' ? `${base}/` : switchHref} aria-current={lang === 'es' ? 'true' : undefined} class:list={['nav__lang-btn', { 'nav__lang-btn--active': lang === 'es' }]}>{t.langEs}</a>
+      <span class="nav__lang-sep" aria-hidden="true">/</span>
+      <a href={lang === 'en' ? `${base}/` : switchHref} aria-current={lang === 'en' ? 'true' : undefined} class:list={['nav__lang-btn', { 'nav__lang-btn--active': lang === 'en' }]}>{t.langEn}</a>
+    </div>
+    <a href={`${base}/contact/`} class="nav__cta">{t.cta}</a>
+    <button type="button" class="nav__hamburger" aria-expanded="false" aria-controls="mobile-menu" data-hamburger aria-label={t.menu}>
+      <span aria-hidden="true">&#9776;</span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="nav__mobile" data-mobile-menu hidden>
+    <a href={`${base}/`}>{t.home}</a>
+    <a href={`${base}/vision/`}>{t.vision}</a>
+    <a href={`${base}/process/`}>{t.process}</a>
+    <a href={`${base}/case-studies/palm/`}>{t.casePalm}</a>
+    <a href={`${base}/case-studies/roots/`}>{t.caseRoots}</a>
+    <a href={`${base}/technology/`}>{t.technology}</a>
+    <a href={`${base}/carbon/`}>{t.carbon}</a>
+    <a href={`${base}/track-record/`}>{t.trackRecord}</a>
+    <a href={`${base}/team/`}>{t.team}</a>
+    <a href={`${base}/contact/`}>{t.contact}</a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-8);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--color-border);
+    height: var(--nav-height);
+  }
+  .nav__logo img {
+    height: 30px;
+    width: auto;
+    display: block;
+  }
+  .nav__links {
+    display: none;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .nav__link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+    color: var(--color-ink);
+    padding-bottom: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+  }
+  .nav__link--active {
+    font-weight: var(--weight-semibold);
+    border-bottom: 2px solid var(--color-accent);
+  }
+  .nav__dropdown {
+    position: relative;
+  }
+  .nav__dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: -14px;
+    padding-top: var(--space-3);
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: 0 16px 40px rgba(10, 10, 10, 0.14);
+  }
+  .nav__dropdown-panel a {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: var(--weight-medium);
+    color: var(--color-ink);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav__dropdown-panel a:last-child {
+    border-bottom: none;
+  }
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .nav__lang {
+    display: flex;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: var(--tracking-wide);
+  }
+  .nav__lang-btn {
+    padding: 2px 4px;
+    color: var(--color-neutral-300);
+    font-weight: var(--weight-regular);
+  }
+  .nav__lang-btn--active {
+    color: var(--color-ink);
+    font-weight: var(--weight-semibold);
+  }
+  .nav__lang-sep {
+    color: var(--color-neutral-300);
+  }
+  .nav__cta {
+    display: none;
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: var(--weight-semibold);
+    padding: 10px 20px;
+    border-radius: var(--radius-sharp);
+  }
+  .nav__hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--color-ink);
+    padding: 4px 8px;
+    line-height: 1;
+  }
+  .nav__mobile {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    z-index: 79;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 12px 32px rgba(10, 10, 10, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3) var(--space-6) var(--space-5);
+    gap: var(--space-1);
+  }
+  .nav__mobile a {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: var(--weight-medium);
+    color: var(--color-ink);
+    padding: var(--space-3) 0;
+  }
+
+  @media (min-width: 900px) {
+    .nav__links {
+      display: flex;
+    }
+    .nav__cta {
+      display: inline-block;
+    }
+    .nav__hamburger {
+      display: none;
+    }
+    .nav__mobile {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function setup(nav: Element) {
+    const dropdown = nav.querySelector('[data-dropdown]');
+    const trigger = dropdown?.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+    const panel = dropdown?.querySelector<HTMLElement>('[data-dropdown-panel]');
+
+    function closeDropdown() {
+      trigger?.setAttribute('aria-expanded', 'false');
+      if (panel) panel.hidden = true;
+    }
+    function toggleDropdown() {
+      const open = trigger?.getAttribute('aria-expanded') === 'true';
+      trigger?.setAttribute('aria-expanded', String(!open));
+      if (panel) panel.hidden = open;
+    }
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+    document.addEventListener('click', (e) => {
+      if (dropdown && !dropdown.contains(e.target as Node)) closeDropdown();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDropdown();
+        trigger?.focus();
+      }
+    });
+
+    const hamburger = nav.querySelector<HTMLButtonElement>('[data-hamburger]');
+    const mobileMenu = nav.querySelector<HTMLElement>('[data-mobile-menu]');
+    hamburger?.addEventListener('click', () => {
+      const open = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!open));
+      if (mobileMenu) mobileMenu.hidden = open;
+    });
+  }
+
+  document.querySelectorAll('.nav').forEach(setup);
+</script>

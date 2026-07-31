@@ -1,0 +1,47 @@
+---
+interface Props {
+  tone?: 'outline' | 'dark' | 'plain' | 'fill';
+  class?: string;
+}
+
+const { tone = 'outline', class: className } = Astro.props;
+---
+
+<span class:list={['badge', `badge--${tone}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: var(--radius-sharp);
+    display: inline-block;
+  }
+  .badge--outline {
+    border: 1px solid var(--color-border-strong);
+    color: var(--brand-accent);
+    background: transparent;
+  }
+  .badge--dark {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    background: var(--color-ink);
+  }
+  .badge--plain {
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  /* Filled neutral pill — used for sector/service tags across pages; the
+     original Badge.jsx only documented outline/dark/plain, this was missing. */
+  .badge--fill {
+    background: var(--color-neutral-100);
+    color: var(--text-primary);
+    border: none;
+  }
+</style>

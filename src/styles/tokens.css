@@ -1,0 +1,85 @@
+:root {
+  --color-paper: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #1a1a1a;
+
+  --color-neutral-700: #333333;
+  --color-neutral-600: #4a4a4a;
+  --color-neutral-500: #6a6a6a;
+  --color-neutral-400: #8a8a8a;
+  --color-neutral-300: #a0a0a0;
+  --color-neutral-100: #f6f6f4;
+
+  --color-border: rgba(10, 10, 10, 0.1);
+  --color-border-strong: rgba(10, 10, 10, 0.15);
+
+  --color-accent: #173a63;
+  --color-accent-tint: #8aa6c2;
+  --color-accent-mist: #d8d8d6;
+
+  --color-overlay-dark-strong: rgba(0, 0, 0, 0.7);
+  --color-overlay-dark-soft: rgba(0, 0, 0, 0.15);
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: rgba(255, 255, 255, 0.7);
+
+  --surface-page: var(--color-paper);
+  --surface-inverse: var(--color-ink);
+  --text-primary: var(--color-ink);
+  --text-secondary: var(--color-neutral-600);
+  --text-muted: var(--color-neutral-400);
+  --text-on-dark: var(--color-on-dark);
+  --brand-accent: var(--color-accent);
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-hero: clamp(38px, 6.2vw, 96px);
+  --text-h1: clamp(30px, 4.6vw, 64px);
+  --text-h2: clamp(26px, 3.6vw, 46px);
+  --text-h3: clamp(20px, 2.4vw, 28px);
+  --text-body-lg: clamp(15px, 1.3vw, 19px);
+  --text-body: 15px;
+  --text-small: 13px;
+  --text-micro: 11px;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-widest: 0.12em;
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.16;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 36px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 56px;
+  --space-12: 64px;
+  --space-13: 80px;
+  --space-14: 96px;
+  --space-15: 120px;
+  --space-16: 140px;
+  --space-17: 160px;
+
+  --radius-sharp: 2px;
+  --radius-round: 50%;
+
+  --nav-height: 62px;
+  --section-padding-x: 40px;
+  --content-max-width: 1080px;
+}

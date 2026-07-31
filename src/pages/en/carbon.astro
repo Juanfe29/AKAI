@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  lang="en"
+  slug="carbon"
+  title="Carbon — AKAI"
+  description="Data infrastructure for what comes after yield. The same flights and sensors that forecast yield generate the measurement layer carbon programs need. In development."
+  noindex={true}
+>
+  <section class="hero">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      src="/media/carbon-satellite.mp4"
+      poster="/media/posters/carbon-satellite.jpg"
+    ></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <span class="hero__badge">MEASUREMENT — REPORTING — VERIFICATION</span>
+      <h1 class="hero__headline">Data infrastructure for what comes after yield.</h1>
+      <p class="hero__body">
+        The same flights and sensors that forecast yield also generate the measurement layer carbon capture
+        programs need (MRV).
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    text-align: center;
+    padding: 0 40px;
+  }
+  .hero__badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-sharp);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: var(--space-6);
+  }
+  .hero__headline {
+    margin: 0 0 20px;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(28px, 4vw, 54px);
+    line-height: 1.15;
+  }
+  .hero__body {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+  }
+</style>

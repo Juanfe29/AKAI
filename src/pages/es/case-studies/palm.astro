@@ -1,0 +1,307 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import StatBlock from '../../../components/StatBlock.astro';
+import Badge from '../../../components/Badge.astro';
+
+const stats = [
+  { value: '3 meses ANTES', label: 'Acciones tomadas antes de los primeros síntomas' },
+  { value: '300 has', label: 'Bajo monitoreo activo' },
+  { value: '20 X', label: 'Detección de estrés más rápida' },
+  { value: '30%', label: 'Mitigación de riesgo de enfermedad' },
+];
+---
+
+<BaseLayout
+  lang="es"
+  slug="case-studies/palm"
+  title="Caso de estudio — Palma de aceite — AKAI"
+  description="Predicción de rendimiento en plantaciones activas de palma en Colombia mediante vuelos recurrentes de drones multiespectrales validados con sensores de campo."
+>
+  <section class="hero">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/media/posters/palm-main.jpg"
+      src="/media/palm-main.mp4"
+    ></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__inset">
+      <video
+        class="hero__inset-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/media/posters/palm-alt.jpg"
+        src="/media/palm-alt.mp4"
+      ></video>
+      <div class="hero__inset-label">Ángulo alterno</div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__location"><Badge tone="dark">María la Baja, Bolívar, COLOMBIA</Badge></div>
+      <div class="hero__eyebrow">Caso de estudio — Palma de aceite</div>
+      <h1 class="hero__headline">Haciendo predicciones de pudrición de cogollo, antes de que se presente</h1>
+      <p class="hero__subhead">Evaluaciones rutinarias del desempeño fisiológico se asocian con un estrés futuro.</p>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="details__col">
+      <h2 class="details__label">El problema</h2>
+      <p class="details__body">
+        La escala de las plantaciones de palma no permite detectar el grado de estrés fisiológico con suficiente
+        anticipación.
+      </p>
+    </div>
+    <div class="details__col">
+      <h2 class="details__label">Solución AKAI</h2>
+      <p class="details__body">
+        Integrar los datos de los sensores de campo, que georreferenciados, permitan desarrollar modelos de IA que
+        formen parte de las herramientas usadas para tomar mejores decisiones en el manejo de la enfermedad.
+      </p>
+    </div>
+  </section>
+
+  <section class="results">
+    <h2 class="results__label">Resultados</h2>
+    <StatBlock stats={stats} />
+    <p class="results__why">
+      A escala de plantación, el valor no es un mapa más bonito — es detectar un bloque estresado a tiempo para
+      actuar, y saber qué hectáreas priorizar cuando los recursos son limitados.
+    </p>
+
+    <div class="disclosure" data-disclosure>
+      <button type="button" class="disclosure__trigger" data-disclosure-trigger aria-expanded="false"
+        >Leer la historia completa</button
+      >
+      <div class="disclosure__panel" data-disclosure-panel hidden>
+        <p>
+          En los bloques monitoreados, las pasadas multiespectrales a nivel de dosel permitieron identificar zonas
+          de estrés semanas antes de los síntomas visibles, dirigiendo intervenciones a las hectáreas que lo
+          necesitaban — no a toda la plantación.
+        </p>
+      </div>
+    </div>
+
+    <a href="/es/contact/" class="results__cta">QUIERO CONTACTARLOS</a>
+  </section>
+
+  <div class="pagenav">
+    <a href="/es/case-studies/roots/" class="pagenav__link">
+      <span>Ensayo en invernadero</span>
+      <span class="pagenav__arrow" aria-hidden="true">↓</span>
+    </a>
+    <a href="/es/" class="pagenav__link">
+      <span class="pagenav__arrow" aria-hidden="true">↑</span>
+      <span>Volver arriba</span>
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-ink);
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+  }
+  .hero__inset {
+    position: absolute;
+    bottom: 120px;
+    right: var(--space-9);
+    width: 260px;
+    height: 160px;
+    border-radius: var(--radius-sharp);
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+  }
+  .hero__inset-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero__inset-label {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--section-padding-x) var(--space-14);
+    max-width: 900px;
+  }
+  .hero__location {
+    margin-bottom: var(--space-3);
+  }
+  .hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: #fff;
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .hero__headline {
+    margin: 0 0 var(--space-5);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: var(--text-h1);
+    line-height: var(--leading-tight);
+  }
+  .hero__subhead {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: var(--text-body-lg);
+    max-width: 560px;
+    line-height: var(--leading-normal);
+  }
+
+  .details {
+    width: 100%;
+    padding: 0 var(--section-padding-x);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-10);
+    max-width: var(--content-max-width);
+    margin: var(--space-14) auto 0;
+  }
+  .details__label {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+  .details__body {
+    margin: 0;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+  }
+
+  .results {
+    width: 100%;
+    padding: var(--space-11) var(--section-padding-x) var(--space-9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-7);
+  }
+  .results__label {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .results__why {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+    font-weight: var(--weight-medium);
+    margin: 0;
+  }
+
+  .disclosure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .disclosure__trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+  }
+  .disclosure__panel p {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  .results__cta {
+    display: inline-block;
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-sharp);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .pagenav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-7);
+    padding: var(--space-5) 0 var(--space-11);
+  }
+  .pagenav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
+  }
+  .pagenav__arrow {
+    display: inline-block;
+    font-size: 18px;
+    transform: translateY(1px);
+  }
+</style>

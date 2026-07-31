@@ -1,0 +1,428 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const regionChips = ['LATAM', 'Europe', 'Central America'];
+
+const compareRows = [
+  {
+    aspect: 'Data source',
+    traditional: 'Satellite imagery, drones or lab analysis',
+    akai: 'Integration of physiology, soil, climate, sensors, drones and AI',
+  },
+  {
+    aspect: 'Detection moment',
+    traditional: 'When the problem is already visible',
+    akai: 'Early detection based on physiological signals',
+  },
+  {
+    aspect: 'Analysis type',
+    traditional: 'Descriptive',
+    akai: 'Predictive and prescriptive',
+  },
+  {
+    aspect: 'Approach',
+    traditional: 'Monitoring',
+    akai: 'Understanding how the plant functions',
+  },
+  {
+    aspect: 'Scale',
+    traditional: 'Isolated variables',
+    akai: 'Integrated plant-soil-atmosphere system',
+  },
+  {
+    aspect: 'Output',
+    traditional: 'Reports',
+    akai: 'Actionable decisions with economic and environmental impact',
+  },
+];
+
+const advantages = [
+  {
+    num: '01',
+    title: 'Physiological intelligence',
+    body: 'Interprets how the plant functions in real time, not just how it looks.',
+  },
+  {
+    num: '02',
+    title: 'Proprietary predictive models',
+    body: 'AI to anticipate yield, stress and agronomic response before symptoms appear.',
+  },
+  {
+    num: '03',
+    title: 'Multidisciplinary integration',
+    body: 'Plant physiology, microbiology, soil science, regenerative agriculture and data science in one methodology.',
+  },
+  {
+    num: '04',
+    title: 'Impact quantification',
+    body: 'Measures water, nutrient, energy, carbon and emissions efficiency through MRV systems.',
+  },
+  {
+    num: '05',
+    title: 'Scientific validation',
+    body: 'Recommendations backed by experimental research, statistical analysis and physiological evidence.',
+  },
+];
+
+const differentiation = [
+  {
+    them: 'Digital agriculture companies generate maps and indicators.',
+    akai: 'AKAI explains why physiological changes occur and what to do to change the outcome.',
+  },
+  {
+    them: 'Bio-input companies sell products.',
+    akai: 'AKAI objectively quantifies their physiological response and agronomic return.',
+  },
+  {
+    them: 'Carbon companies quantify emissions.',
+    akai: 'AKAI connects that quantification to physiological performance and system productivity.',
+  },
+  {
+    them: 'AI companies build models.',
+    akai: 'AKAI builds models grounded in plant biology, improving their interpretability.',
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  slug="vision"
+  title="Why AKAI — Value Proposition"
+  description="We believe decisions can be predicted, not just monitored. We integrate plant physiology, data science, agronomy and sustainability into a single decision platform."
+>
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__eyebrow">Why AKAI</div>
+      <h1 class="hero__statement">We believe decisions can be predicted, not just monitored.</h1>
+      <p class="hero__body">
+        Every data point matters. AKAI turns science into metrics that drive actions with forecastable outcomes,
+        mitigating impacts on productivity.
+      </p>
+      <p class="hero__geo">Science from Colombia, operating worldwide.</p>
+      <div class="hero__chips">
+        {regionChips.map((rc) => <span class="hero__chip">{rc}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="compare">
+    <div class="compare__inner">
+      <div class="compare__head">
+        <h2 class="compare__label">Value proposition</h2>
+        <p class="compare__intro">
+          The differentiator is not using AI or sensors. It is the integration of plant physiology, data science,
+          agronomy and sustainability into a single decision platform. Most companies specialize in one of these
+          components; AKAI connects them.
+        </p>
+      </div>
+      <div class="compare__grid">
+        <div class="compare__cell compare__cell--empty" aria-hidden="true"></div>
+        <div class="compare__cell compare__cell--col-trad">Traditional companies</div>
+        <div class="compare__cell compare__cell--col-akai">AKAI</div>
+        {
+          compareRows.map((r) => (
+            <div class="compare__row">
+              <div class="compare__cell compare__cell--aspect">{r.aspect}</div>
+              <div class="compare__cell compare__cell--trad">{r.traditional}</div>
+              <div class="compare__cell compare__cell--akai">{r.akai}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="advantages">
+    <div class="advantages__inner">
+      <h2 class="advantages__head">Five competitive advantages</h2>
+      <div class="advantages__grid">
+        {
+          advantages.map((a) => (
+            <div class="advantages__card">
+              <div class="advantages__num">{a.num}</div>
+              <div class="advantages__title">{a.title}</div>
+              <div class="advantages__body">{a.body}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="diff">
+    <div class="diff__inner">
+      <h2 class="diff__label">Against market benchmarks</h2>
+      <div class="diff__grid">
+        {
+          differentiation.map((d) => (
+            <div class="diff__card">
+              <p class="diff__them">{d.them}</p>
+              <p class="diff__akai">{d.akai}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <p class="closing__text">
+      AKAI does not sell data, sensors or artificial intelligence; it sells the ability to understand how the crop
+      functions, anticipate its behavior and turn that knowledge into decisions that increase productivity,
+      profitability and sustainability.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    width: 100%;
+    padding: 170px 40px 70px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero__inner {
+    max-width: 960px;
+  }
+  .hero__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    margin-bottom: var(--space-6);
+    text-transform: uppercase;
+  }
+  .hero__statement {
+    margin: 0 0 28px;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(28px, 4.2vw, 58px);
+    line-height: 1.14;
+  }
+  .hero__body {
+    margin: 0 auto 30px;
+    max-width: 720px;
+    color: var(--color-neutral-700);
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.6;
+  }
+  .hero__geo {
+    margin: 0 0 22px;
+    color: var(--color-neutral-500);
+    font-size: 14px;
+  }
+  .hero__chips {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hero__chip {
+    padding: 8px 16px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sharp);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .compare {
+    width: 100%;
+    padding: 70px 40px;
+    background: var(--color-neutral-100);
+  }
+  .compare__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .compare__head {
+    text-align: center;
+  }
+  .compare__label {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .compare__intro {
+    margin: 0 auto;
+    max-width: 760px;
+    font-size: 15px;
+    color: var(--color-neutral-600);
+    line-height: 1.6;
+  }
+  .compare__grid {
+    display: grid;
+    grid-template-columns: minmax(120px, 0.8fr) minmax(200px, 1.1fr) minmax(200px, 1.1fr);
+    gap: 1px;
+    background: var(--color-border-strong);
+    width: 100%;
+  }
+  .compare__row {
+    display: contents;
+  }
+  .compare__cell {
+    background: var(--color-paper);
+    padding: 20px 18px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .compare__cell--empty {
+    background: var(--color-neutral-100);
+  }
+  .compare__cell--col-trad {
+    background: var(--color-accent-mist);
+    padding: 16px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .compare__cell--col-akai {
+    background: var(--color-accent);
+    padding: 16px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .compare__cell--aspect {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .compare__cell--trad {
+    color: var(--color-neutral-400);
+  }
+  .compare__cell--akai {
+    color: var(--color-ink);
+    font-weight: 500;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  .advantages {
+    width: 100%;
+    padding: 90px 40px;
+    background: var(--color-ink);
+  }
+  .advantages__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .advantages__head {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(22px, 2.8vw, 38px);
+    line-height: 1.2;
+  }
+  .advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .advantages__card {
+    background: var(--color-ink);
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .advantages__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-accent-tint);
+    letter-spacing: var(--tracking-wide);
+  }
+  .advantages__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+  }
+  .advantages__body {
+    font-size: 13px;
+    color: #c9c9c9;
+    line-height: 1.55;
+  }
+
+  .diff {
+    width: 100%;
+    padding: 90px 40px 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .diff__inner {
+    max-width: 1080px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .diff__label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .diff__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .diff__card {
+    padding: 26px;
+    border: 1px solid var(--color-border);
+  }
+  .diff__them {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: var(--color-neutral-400);
+    line-height: 1.5;
+  }
+  .diff__akai {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-ink);
+    font-weight: 500;
+    line-height: 1.55;
+    padding-left: 14px;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  .closing {
+    width: 100%;
+    padding: 20px 40px 110px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .closing__text {
+    margin: 0;
+    max-width: 860px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(19px, 2.4vw, 32px);
+    color: var(--color-ink);
+    line-height: 1.32;
+  }
+</style>

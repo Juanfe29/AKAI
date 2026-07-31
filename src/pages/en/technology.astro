@@ -1,0 +1,638 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatBlock from '../../components/StatBlock.astro';
+
+// Physiological data points used to date — update monthly (see source Technology.dc.html).
+const dataPointsStat = '20.069';
+
+const dashboards = [
+  {
+    farm: 'Tesalia Farm',
+    view: 'Spatial View',
+    desc: 'Vegetation indices (NDVI-type) via drone and satellite.',
+    url: 'https://indicesdevegetaciontesaliagrupohame.netlify.app/',
+  },
+  {
+    farm: 'Tesalia Farm',
+    view: 'Physiological View',
+    desc: 'Plant and soil sensor indices.',
+    url: 'https://indicesfisiotesaliagrupohame.netlify.app/',
+  },
+  {
+    farm: 'El Bosque Farm',
+    view: 'Spatial View',
+    desc: 'Vegetation indices (NDVI-type) via drone and satellite.',
+    url: 'https://indicesdevegetacionelbosquegrupohame.netlify.app/',
+  },
+  {
+    farm: 'El Bosque Farm',
+    view: 'Physiological View',
+    desc: 'Plant and soil sensor indices.',
+    url: 'https://indicesfisioelbosquegrupohame.netlify.app/',
+  },
+];
+const dashTabs = dashboards.map((d) => d.farm.replace(' Farm', '') + ' · ' + d.view.replace(' View', ''));
+
+const trlRows = [
+  { component: 'Physiological intelligence platform', trl: '8', status: 'Validated in real conditions across multiple crops and clients.' },
+  { component: 'AI predictive models', trl: '7–8', status: 'Demonstrated and refined in operational environments, with continuously expanding databases.' },
+  { component: 'Physiological monitoring system (sensors, UAV, dashboards)', trl: '8', status: 'Deployed in commercial projects.' },
+  { component: 'MRV for regenerative agriculture and carbon', trl: '6–7', status: 'Operational validation in pilots and first commercial deployments.' },
+  { component: 'New carbon and soil regeneration models', trl: '5–6', status: 'In demonstration and scientific consolidation phase.' },
+];
+
+const phases = [
+  { num: 'Phase 1', title: 'Scientific research', body: 'Building knowledge in plant physiology, sensors and data analysis.' },
+  { num: 'Phase 2', title: 'Technology validation', body: 'Algorithms, protocols and experimental pilots across different crops.' },
+  { num: 'Phase 3', title: 'Commercialization', body: 'Projects with agricultural companies, bio-input manufacturers, universities and sector organizations.' },
+  { num: 'Phase 4 — current', title: 'Scaling', body: 'Consolidation as a technology platform: AI, regenerative agriculture, carbon MRV and multisector digital solutions.', current: true },
+];
+---
+
+<BaseLayout
+  lang="en"
+  slug="technology"
+  title="Technology — AKAI"
+  description="Knowledge built on sensors and data intelligence. Algorithms tailored to each client's needs. Decision dashboards in production."
+>
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero__video" poster="/media/posters/sensor.jpg" src="/media/sensor.mp4"></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <h1 class="hero__head">Knowledge built on sensors and data intelligence</h1>
+      <p class="hero__sub">Algorithms tailored to each client's needs.</p>
+    </div>
+  </section>
+
+  <section class="hwsw">
+    <div class="hwsw__grid">
+      <div class="hwsw__cell">
+        <h2 class="hwsw__label">Hardware</h2>
+        <p class="hwsw__body">
+          We use multispectral and RGB sensors, HIGH-RESOLUTION digital voltmeters, field fluorometers and
+          spectroradiometers.
+        </p>
+      </div>
+      <div class="hwsw__cell">
+        <h2 class="hwsw__label">Software</h2>
+        <p class="hwsw__body">
+          Web platforms, dashboards tied to variable-performance thresholds, and custom-built AI algorithms.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-card">
+    <div class="stat-card__inner">
+      <div class="stat-card__pending" role="note">
+        PENDING — climate chart for a zone in Panama (similar to current one)
+      </div>
+      <StatBlock stats={[{ value: dataPointsStat, label: 'Physiological data points used to date' }]} dark />
+    </div>
+  </section>
+
+  <section class="dash" data-dash>
+    <div class="dash__intro">
+      <div class="dash__tag">Decision dashboard — in production</div>
+      <h2 class="dash__head">One dashboard, every perspective.</h2>
+      <p class="dash__body">
+        We integrate every sampling into a single decision dashboard, with temporal and spatial perspectives on the
+        same crop. These dashboards are in production for Grupo Hame: two farms, each with a spatial view
+        (drone/satellite vegetation indices) and a physiological view (plant and soil sensor indices).
+      </p>
+    </div>
+
+    <div class="dash__tabs" role="tablist" aria-label="Grupo Hame dashboards">
+      {
+        dashboards.map((d, i) => (
+          <button
+            type="button"
+            class="dash__tab"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-dash-tab
+            data-url={d.url}
+            data-desc={`${d.farm} · ${d.view} — ${d.desc}`}
+            data-label={`${d.farm} — ${d.view}`}
+          >
+            {dashTabs[i]}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="dash__frame">
+      <div class="dash__chrome" aria-hidden="true">
+        <span class="dash__dot dash__dot--red"></span>
+        <span class="dash__dot dash__dot--yellow"></span>
+        <span class="dash__dot dash__dot--green"></span>
+        <span class="dash__chrome-url" data-dash-url>{dashboards[0].url}</span>
+      </div>
+      <iframe
+        class="dash__iframe"
+        data-dash-iframe
+        src={dashboards[0].url}
+        title={`${dashboards[0].farm} — ${dashboards[0].view}`}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+      ></iframe>
+    </div>
+
+    <div class="dash__footer">
+      <div class="dash__desc" data-dash-desc>
+        {dashboards[0].farm} · {dashboards[0].view} — {dashboards[0].desc}
+      </div>
+      <a class="dash__open" data-dash-open href={dashboards[0].url} target="_blank" rel="noopener">
+        Open dashboard <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="dash__footer-row">
+      <div class="dash__client">Client: Grupo Hame — real production dashboards, not demos.</div>
+    </div>
+  </section>
+
+  <section class="trl">
+    <div class="trl__intro">
+      <h2 class="trl__label">Technology readiness</h2>
+      <p class="trl__head">TRL 8 — technology validated in real operational environments.</p>
+      <p class="trl__body">
+        AKAI can be considered a TRL 8 company: the technology has been developed, integrated and validated in real
+        environments with clients, while continuing to evolve toward more scalable, standardized solutions.
+      </p>
+    </div>
+    <div class="trl__table">
+      <div class="trl__th">Component</div>
+      <div class="trl__th">TRL</div>
+      <div class="trl__th">Status</div>
+      {
+        trlRows.map((r) => (
+          <>
+            <div class="trl__td trl__td--component">{r.component}</div>
+            <div class="trl__td trl__td--trl">{r.trl}</div>
+            <div class="trl__td trl__td--status">{r.status}</div>
+          </>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="phases">
+    <h2 class="phases__label">Four-stage evolution</h2>
+    <div class="phases__grid">
+      {
+        phases.map((p) => (
+          <div class:list={['phases__cell', { 'phases__cell--current': p.current }]}>
+            <div class="phases__num">{p.num}</div>
+            <div class="phases__title">{p.title}</div>
+            <div class="phases__body">{p.body}</div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="phases__closing">
+      AKAI has reached TRL 8, with technologies validated in real operational conditions and an active commercial
+      portfolio. The company is in a scaling phase.
+    </p>
+    <p class="phases__note">
+      TRL is assigned per technology, not per company. Each portfolio solution may hold a different TRL, though the
+      core portfolio sits around TRL 8.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-dash]').forEach((root) => {
+    const tabs = root.querySelectorAll<HTMLButtonElement>('[data-dash-tab]');
+    const iframe = root.querySelector<HTMLIFrameElement>('[data-dash-iframe]');
+    const urlLabel = root.querySelector<HTMLElement>('[data-dash-url]');
+    const desc = root.querySelector<HTMLElement>('[data-dash-desc]');
+    const openLink = root.querySelector<HTMLAnchorElement>('[data-dash-open]');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+        tab.setAttribute('aria-selected', 'true');
+        const url = tab.dataset.url || '';
+        if (iframe) {
+          iframe.src = url;
+          iframe.title = tab.dataset.label || '';
+        }
+        if (urlLabel) urlLabel.textContent = url;
+        if (desc) desc.textContent = tab.dataset.desc || '';
+        if (openLink) openLink.href = url;
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-ink);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.25) 45%, rgba(0, 0, 0, 0.75) 100%);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--section-padding-x) 80px;
+    max-width: 960px;
+  }
+  .hero__head {
+    margin: 0 0 12px;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(28px, 4.2vw, 58px);
+    line-height: 1.08;
+  }
+  .hero__sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: var(--text-body-lg);
+    max-width: 620px;
+    line-height: 1.5;
+  }
+
+  .hwsw {
+    width: 100%;
+    padding: var(--space-14) var(--section-padding-x) var(--space-10);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .hwsw__grid {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .hwsw__cell {
+    background: var(--color-ink);
+    padding: var(--space-8);
+  }
+  .hwsw__label {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-tint);
+    text-transform: uppercase;
+  }
+  .hwsw__body {
+    margin: 0;
+    color: #e6e6e6;
+    font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
+  }
+
+  .stat-card {
+    width: 100%;
+    padding: 0 var(--section-padding-x) var(--space-10);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .stat-card__inner {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: var(--space-8);
+    background: #111111;
+  }
+  .stat-card__pending {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: var(--space-4);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+  }
+
+  .dash {
+    width: 100%;
+    padding: var(--space-10) var(--section-padding-x) var(--space-14);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .dash__intro,
+  .dash__tabs,
+  .dash__frame,
+  .dash__footer,
+  .dash__client {
+    max-width: var(--content-max-width);
+    width: 100%;
+  }
+  .dash {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dash__intro {
+    margin-bottom: var(--space-7);
+  }
+  .dash__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-tint);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+  .dash__head {
+    margin: 0 0 var(--space-4);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1.15;
+  }
+  .dash__body {
+    margin: 0;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+  .dash__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+  .dash__tab {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: var(--weight-semibold);
+    padding: 10px 16px;
+    border-radius: var(--radius-sharp);
+    cursor: pointer;
+  }
+  .dash__tab[aria-selected='true'] {
+    background: #fff;
+    color: var(--color-ink);
+    border-color: #fff;
+  }
+  .dash__frame {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--color-ink);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+  }
+  .dash__chrome {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .dash__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dash__dot--red {
+    background: #ff5f57;
+  }
+  .dash__dot--yellow {
+    background: #febc2e;
+  }
+  .dash__dot--green {
+    background: #28c840;
+  }
+  .dash__chrome-url {
+    margin-left: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dash__iframe {
+    width: 100%;
+    height: calc(100% - 41px);
+    border: none;
+    display: block;
+    background: #fff;
+  }
+  .dash__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+  }
+  .dash__desc {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .dash__open {
+    background: #fff;
+    color: var(--color-ink);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-small);
+    padding: 11px 20px;
+    border-radius: var(--radius-sharp);
+  }
+  .dash__client {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .dash__footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .trl {
+    width: 100%;
+    padding: var(--space-15) var(--section-padding-x) var(--space-11);
+    display: flex;
+    justify-content: center;
+  }
+  .trl__intro {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin-bottom: var(--space-7);
+  }
+  .trl__label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .trl__head {
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(22px, 2.8vw, 38px);
+    line-height: 1.2;
+  }
+  .trl__body {
+    margin: 0;
+    max-width: 760px;
+    font-size: var(--text-body);
+    color: var(--color-neutral-600);
+    line-height: 1.6;
+  }
+  .trl__table {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(200px, 1.3fr) minmax(90px, 0.5fr) minmax(220px, 1.4fr);
+    gap: 1px;
+    background: var(--color-border-strong);
+  }
+  .trl__th {
+    background: var(--color-neutral-100);
+    padding: 14px 18px;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .trl__td {
+    background: var(--color-paper);
+    padding: 20px 18px;
+    font-size: var(--text-small);
+    line-height: 1.5;
+  }
+  .trl__td--component {
+    font-weight: var(--weight-semibold);
+    color: var(--color-ink);
+    line-height: 1.45;
+  }
+  .trl__td--trl {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: var(--weight-bold);
+    color: var(--color-accent);
+  }
+  .trl__td--status {
+    color: var(--color-neutral-600);
+  }
+
+  .phases {
+    width: 100%;
+    padding: var(--space-2) var(--section-padding-x) var(--space-15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .phases__label {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .phases__grid {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--color-border-strong);
+  }
+  .phases__cell {
+    background: var(--color-paper);
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .phases__cell--current {
+    background: var(--color-accent);
+  }
+  .phases__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+  }
+  .phases__cell--current .phases__num {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .phases__title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 16px;
+    color: var(--color-ink);
+  }
+  .phases__cell--current .phases__title {
+    color: #fff;
+  }
+  .phases__body {
+    font-size: 12px;
+    color: var(--color-neutral-600);
+    line-height: 1.5;
+  }
+  .phases__cell--current .phases__body {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .phases__closing {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: clamp(16px, 1.8vw, 22px);
+    color: var(--color-ink);
+    line-height: 1.4;
+  }
+  .phases__note {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-neutral-400);
+    line-height: 1.5;
+  }
+</style>

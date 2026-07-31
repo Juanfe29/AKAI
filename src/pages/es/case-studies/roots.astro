@@ -1,0 +1,369 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import StatBlock from '../../../components/StatBlock.astro';
+import Badge from '../../../components/Badge.astro';
+
+const stats = [
+  { value: 'Hasta 4.5x', label: 'Más biomasa radicular vs. no tratado' },
+  { value: 'Hasta 5.4x', label: 'Capacidad de extracción de agua/nutrientes vs. no tratado' },
+  { value: '+12,9%', label: 'En Producción' },
+  { value: '+USD 5.768 / ha', label: 'Beneficio neto adicional' },
+  { value: '30,8', label: 'Relación beneficio/inversión' },
+];
+---
+
+<BaseLayout
+  lang="es"
+  slug="case-studies/roots"
+  title="Caso de estudio — Ensayo en invernadero — AKAI"
+  description="Hasta 4.5x más biomasa radicular, medida antes de que la planta lo mostrara. Fenotipado digital en un ensayo comercial de rosas bajo invernadero en Colombia."
+>
+  <section class="hero">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/media/posters/roots.jpg"
+      src="/media/roots.mp4"
+    ></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__location"><Badge tone="dark">Rosas var. Freedom, El Rosal, Cundinamarca, COLOMBIA</Badge></div>
+      <h1 class="hero__headline">Evaluación comercial bajo invernadero</h1>
+      <p class="hero__subhead">
+        Detección de la biomasa radicular activa y su impacto sobre la toma de agua y nutrientes y sobre la
+        producción.
+      </p>
+    </div>
+  </section>
+
+  <section class="role">
+    <div class="role__box">
+      <h2 class="role__label">El rol de AKAI</h2>
+      <p class="role__body">
+        Un desarrollador de bioestimulantes necesitaba probar el efecto de su producto en la fisiología del cultivo
+        bajo condiciones reales de invernadero. AKAI aportó la capa de medición — fenotipado digital para rastrear
+        lo que realmente ocurría dentro de la planta, no solo lo que se veía en la cosecha.
+      </p>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="details__col">
+      <h2 class="details__label">El problema</h2>
+      <p class="details__body">
+        Los productores de rosas en invernadero en Colombia manejan cultivos de alto valor cada vez más expuestos a
+        sequía, calor y salinidad. Las variaciones de rendimiento ligadas a este estrés abiótico son difíciles de
+        manejar de forma reactiva — cuando el estrés es visible, la productividad ya se perdió.
+      </p>
+    </div>
+    <div class="details__col">
+      <h2 class="details__label">Solución AKAI</h2>
+      <p class="details__body">
+        El monitoreo de variables fisiológicas durante todo el ciclo de cultivo de la rosa permitió identificar el
+        verdadero impacto de un extracto de algas, en cada proceso al interior de la planta, y explicar el
+        incremento en producción y calidad. Identificando estos comportamientos en fases tempranas, se pueden tomar
+        decisiones acertadas con anticipación.
+      </p>
+    </div>
+  </section>
+
+  <section class="results">
+    <h2 class="results__label">Resultados</h2>
+    <StatBlock stats={stats} />
+
+    <div class="charts">
+      <figure class="charts__card">
+        <h3 class="charts__title">Biomasa activa de raíces (Cp — nF) por días después de evaluación (DDE)</h3>
+        <img
+          src="/assets/charts/biomasa-radicular.png"
+          alt="Gráfico de líneas de biomasa radicular activa (Cp) frente a días después de la evaluación (DDE), comparando la curva convencional (no tratado) con los tratamientos T1 (4 l/ha) y T2 (8 l/ha); las curvas tratadas se separan por encima de la convencional desde etapas tempranas del ciclo, mucho antes de una diferencia visible en superficie."
+          width="1202"
+          height="874"
+        />
+        <figcaption class="charts__caption">
+          Los tratamientos (T1: 4 l/ha, T2: 8 l/ha) se separan de la curva convencional mucho antes de que exista
+          una diferencia visible en superficie.
+        </figcaption>
+      </figure>
+      <figure class="charts__card">
+        <h3 class="charts__title">Extracción de agua y nutrientes (Cs — nF) por días después de evaluación (DDE)</h3>
+        <img
+          src="/assets/charts/extraccion-agua-nutrientes.png"
+          alt="Gráfico de líneas de capacidad de extracción de agua y nutrientes (Cs) frente a días después de la evaluación (DDE), comparando la curva convencional (no tratado) con los tratamientos T1 y T2; la capacidad de extracción se recupera antes y alcanza picos más altos en los tratamientos."
+          width="1296"
+          height="914"
+        />
+        <figcaption class="charts__caption">
+          La capacidad de extracción se recupera antes y alcanza picos más altos en los tratamientos — el mecanismo
+          fisiológico detrás del incremento en producción.
+        </figcaption>
+      </figure>
+    </div>
+
+    <p class="results__why">
+      El resultado no es solo un sistema radicular más fuerte — es la prueba de que el cambio fisiológico puede
+      medirse y pronosticarse semanas antes de que aparezca en el rendimiento. Esa es la misma capa de medición que
+      AKAI aplica en cada proyecto, desde ensayos en invernadero hasta palma a escala de plantación.
+    </p>
+
+    <div class="disclosure" data-disclosure>
+      <button type="button" class="disclosure__trigger" data-disclosure-trigger aria-expanded="false"
+        >Leer la historia completa</button
+      >
+      <div class="disclosure__panel" data-disclosure-panel hidden>
+        <p>
+          El ensayo comparó bloques tratados y no tratados durante un ciclo completo de crecimiento, midiendo
+          biomasa radicular, producción y economía de rendimiento posterior. El proceso de detección de AKAI reveló
+          la divergencia a nivel de raíz de forma temprana, antes de ser visible en el dosel o la producción —
+          dando a los productores una ventaja de tiempo en las decisiones que importaban.
+        </p>
+      </div>
+    </div>
+
+    <a href="/es/contact/" class="results__cta">QUIERO CONTACTARLOS</a>
+  </section>
+
+  <div class="pagenav">
+    <a href="/es/case-studies/palm/" class="pagenav__link">
+      <span class="pagenav__arrow" aria-hidden="true">←</span>
+      <span>Caso de estudio — Palma</span>
+    </a>
+    <a href="/es/" class="pagenav__link">
+      <span class="pagenav__arrow" aria-hidden="true">↑</span>
+      <span>Volver arriba</span>
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--color-ink);
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.72) 100%);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--section-padding-x) var(--space-14);
+    max-width: 900px;
+  }
+  .hero__location {
+    margin-bottom: var(--space-3);
+  }
+  .hero__headline {
+    margin: 0 0 var(--space-5);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: var(--text-h1);
+    line-height: var(--leading-snug);
+  }
+  .hero__subhead {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: var(--text-body-lg);
+    max-width: 560px;
+    line-height: var(--leading-normal);
+  }
+
+  .role {
+    width: 100%;
+    padding: var(--space-13) var(--section-padding-x) 0;
+    display: flex;
+    justify-content: center;
+  }
+  .role__box {
+    max-width: var(--content-max-width);
+    width: 100%;
+    padding: var(--space-6) var(--space-7);
+    background: var(--color-neutral-100);
+    border-left: 3px solid var(--color-accent);
+  }
+  .role__label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin: 0 0 var(--space-3);
+  }
+  .role__body {
+    margin: 0;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+  }
+
+  .details {
+    width: 100%;
+    padding: 0 var(--section-padding-x);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-10);
+    max-width: var(--content-max-width);
+    margin: var(--space-11) auto 0;
+  }
+  .details__label {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+  .details__body {
+    margin: 0;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+  }
+
+  .results {
+    width: 100%;
+    padding: var(--space-11) var(--section-padding-x) var(--space-9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-7);
+  }
+  .results__label {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .charts {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: var(--space-6);
+  }
+  .charts__card {
+    border: 1px solid var(--color-border);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    background: var(--color-paper);
+    margin: 0;
+  }
+  .charts__title {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+  }
+  .charts__card img {
+    width: 100%;
+    height: auto;
+  }
+  .charts__caption {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-neutral-500);
+    line-height: var(--leading-relaxed);
+  }
+
+  .results__why {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+    font-weight: var(--weight-medium);
+    margin: 0;
+  }
+
+  .disclosure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .disclosure__trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+  }
+  .disclosure__panel p {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-neutral-700);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  .results__cta {
+    display: inline-block;
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-sharp);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .pagenav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-7);
+    padding: var(--space-5) 0 var(--space-11);
+  }
+  .pagenav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
+  }
+  .pagenav__arrow {
+    display: inline-block;
+    font-size: 18px;
+    transform: translateY(1px);
+  }
+</style>

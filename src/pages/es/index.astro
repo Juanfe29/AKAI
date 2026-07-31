@@ -1,0 +1,753 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatBlock from '../../components/StatBlock.astro';
+
+const heroSectors = [
+  { name: 'AGRICULTURA', src: '/media/palm-main.mp4', poster: '/media/posters/palm-main.jpg' },
+  { name: 'EMPRESAS DE AGROINSUMOS', src: '/media/agro-field.mp4', poster: '/media/posters/agro-field.jpg' },
+  { name: 'MINERÍA', src: '/media/mining.mp4', poster: '/media/posters/mining.jpg' },
+  { name: 'EMPRESAS DE ALIMENTOS', src: '/media/food.mp4', poster: '/media/posters/food.jpg' },
+  { name: 'BANCA Y SEGUROS', src: '/media/banking.mp4', poster: '/media/posters/banking.jpg' },
+  { name: 'MEDIO AMBIENTE', src: '/media/environment-amazon.mp4', poster: '/media/posters/environment-amazon.jpg' },
+];
+
+const countries = ['COLOMBIA', 'PANAMÁ', 'HONDURAS', 'PERÚ', 'CHILE', 'ESPAÑA', 'FRANCIA', 'PORTUGAL'];
+
+const whatItems = [
+  'Identifica el entorno, digitaliza los procesos, entrega resultados fáciles de entender y, trabajando en equipo con el cliente, interpreta y diseña acciones ganadoras.',
+  'Genera modelos predictivos como herramienta de soporte de decisión.',
+  'Le da soporte en sus indicadores de Sostenibilidad.',
+  'Valoriza su negocio al asesorarlo en Economía circular.',
+  'Mide, analiza y reporta su Huella de Carbono siguiendo parámetros internacionales.',
+  'Soportamos la trazabilidad requerida en Mercados de Carbono.',
+];
+
+const problems = [
+  'Detecta el estrés de los cultivos antes de que sea visible, reduciendo pérdidas de rendimiento.',
+  'Identifica los factores que limitan la productividad: agua, nutrición, temperatura, radiación y suelo.',
+  'Optimiza el uso de fertilizantes, agua y bioinsumos, mejorando la eficiencia y reduciendo costos.',
+  'Evalúa científicamente la respuesta de variedades, bioestimulantes y estrategias de manejo.',
+  'Convierte datos de sensores, drones y monitoreo fisiológico en recomendaciones prácticas mediante IA.',
+  'Cuantifica el impacto de prácticas regenerativas sobre el suelo, la productividad y el carbono.',
+  'Implementa sistemas MRV para medir, reportar y verificar reducciones de emisiones y captura de carbono.',
+  'Genera modelos predictivos que permiten anticipar riesgos y planificar decisiones agronómicas.',
+  'Centraliza información dispersa en plataformas visuales para la gestión técnica y gerencial.',
+  'Proporciona evidencia científica para validar tecnologías, facilitar certificaciones y respaldar inversión.',
+];
+
+const sectors = [
+  {
+    tag: 'AKAI en AGRICULTURA',
+    title: 'Monitoreo en tiempo real del desarrollo del cultivo',
+    desc: 'Uso de sensores proximales que permiten monitorear en tiempo real el desarrollo del cultivo.',
+    services: ['Diagnóstico', 'Pronóstico y modelamiento climático', 'Fenotipado digital de cultivos'],
+    video: '/media/palm-main.mp4',
+    poster: '/media/posters/palm-main.jpg',
+    link: '/es/case-studies/palm/',
+    linkLabel: 'Ver caso de estudio',
+  },
+  {
+    tag: 'AKAI en I+D+i para EMPRESAS DE AGROINSUMOS',
+    title: 'Validamos y desarrollamos sus innovaciones agrícolas',
+    desc: 'Medición en campo y validación en laboratorio: el arco completo de la evidencia científica.',
+    services: ['Diseño de soluciones', 'Evaluación de impacto ambiental', 'Estrategias diferenciadoras'],
+    video: '/media/agro-field.mp4',
+    poster: '/media/posters/agro-field.jpg',
+    video2: '/media/agro-lab.mp4',
+    link: '/es/case-studies/roots/',
+    linkLabel: 'Ver caso de estudio',
+  },
+  {
+    tag: 'AKAI en MINERÍA',
+    title: 'Del suelo minero a un activo regenerado',
+    services: ['Regeneración de suelos mineros', 'Valorización de residuos'],
+    video: '/media/mining.mp4',
+    poster: '/media/posters/mining.jpg',
+  },
+  {
+    tag: 'AKAI en EMPRESAS DE ALIMENTOS',
+    title: 'Los residuos también son datos',
+    services: ['Valorización de residuos'],
+    video: '/media/food.mp4',
+    poster: '/media/posters/food.jpg',
+  },
+  {
+    tag: 'AKAI en BANCA Y SEGUROS',
+    title: 'Riesgo agroclimático, cuantificado',
+    services: ['Evaluación de riesgos'],
+    video: '/media/banking.mp4',
+    poster: '/media/posters/banking.jpg',
+  },
+  {
+    tag: 'AKAI en MEDIO AMBIENTE',
+    title: 'Ciencia para restaurar ecosistemas',
+    services: ['Estrategias de revegetación', 'Análisis de fragmentación espacial', 'Inventarios florísticos'],
+    video: '/media/environment-amazon.mp4',
+    poster: '/media/posters/environment-amazon.jpg',
+  },
+];
+---
+
+<BaseLayout
+  lang="es"
+  slug=""
+  title="AKAI — Ciencia de datos e IA aplicada"
+  description="AKAI S.A.S. es una empresa de ciencia de datos e inteligencia artificial aplicada a agricultura, agroinsumos, minería, alimentos, banca y seguros, y medio ambiente. Ciencia de Colombia, que opera en el mundo."
+>
+  <div id="intro-overlay" class="intro" data-intro>
+    <script>
+      if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('akai_intro_seen')) {
+        (document.currentScript as HTMLScriptElement).parentElement?.setAttribute('hidden', '');
+      }
+    </script>
+    <video data-intro-video autoplay muted playsinline class="intro__video" poster="/media/posters/intro-shoots.jpg">
+      <source src="/media/intro-shoots.mp4" type="video/mp4" />
+    </video>
+    <div class="intro__tagline" data-intro-tagline hidden>APPLIED · KNOWLEDGE · ARTIFICIAL · INTELLIGENCE</div>
+    <button type="button" class="intro__skip" data-intro-skip>Omitir intro</button>
+  </div>
+
+  <section class="hero" data-hero data-hero-sectors={JSON.stringify(heroSectors)}>
+    <video
+      data-hero-video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="hero__video"
+      poster={heroSectors[0].poster}
+      src={heroSectors[0].src}
+    ></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__panel hero__panel--desktop" aria-hidden="true">
+      <div class="hero__counter" data-hero-counter>01 / 06</div>
+      <div class="hero__sector" data-hero-name>{heroSectors[0].name}</div>
+    </div>
+    <div class="hero__panel hero__panel--mobile" aria-hidden="true">
+      <div class="hero__counter" data-hero-counter-mobile>01 / 06</div>
+      <div class="hero__sector" data-hero-name-mobile>{heroSectors[0].name}</div>
+    </div>
+
+    <div class="hero__content">
+      <img src="/assets/akai-logo-white.png" alt="AKAI" class="hero__logo" width="280" height="70" />
+      <h1 class="hero__head">Creamos conocimiento aplicado mediante IA, que optimiza su productividad</h1>
+      <p class="hero__sub">
+        Modelamiento de datos, ciencias espaciales, sensores remotos y proximales, análisis históricos y predictivos
+      </p>
+      <div class="hero__ctas">
+        <a href="/es/contact/" class="hero__cta-primary">Necesito más información</a>
+        <a href="/es/vision/" class="hero__cta-secondary">
+          <span>Visión</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="belief">
+    <div class="belief__eyebrow">Nuestra creencia</div>
+    <h2 class="belief__head">Creemos que las decisiones pueden predecirse, no solo monitorearse.</h2>
+    <p class="belief__body">
+      Cada dato es importante. AKAI convierte la ciencia en métricas que generan acciones con resultados
+      pronosticables que mitiguen los impactos en la productividad.
+    </p>
+    <p class="belief__origin">Ciencia de Colombia, que opera en el mundo.</p>
+    <div class="belief__countries">
+      {countries.map((c) => <span class="belief__chip">{c}</span>)}
+    </div>
+    <div class="belief__stats">
+      <div class="belief__stat-cell">
+        <div class="belief__stat-value">18</div>
+        <div class="belief__stat-label">Cultivos asesorados</div>
+      </div>
+      <div class="belief__stat-cell">
+        <div class="belief__stat-value">18</div>
+        <div class="belief__stat-label">Clientes</div>
+      </div>
+      <div class="belief__stat-cell belief__stat-cell--text">Sede en Colombia · Operando en el mundo</div>
+    </div>
+  </section>
+
+  <section class="what">
+    <div class="what__inner">
+      <h2 class="what__head">Ciencia de datos e inteligencia artificial aplicada</h2>
+      <p class="what__intro">
+        AKAI S.A.S. es una empresa de ciencia de datos e inteligencia artificial aplicada a sectores como
+        agricultura, minería, alimentos, banca, seguros, ciencias ambientales y agroinsumos. Desarrolla sistemas de
+        monitoreo fisiológico, análisis predictivo y cuantificación de sostenibilidad para optimizar la
+        productividad, la eficiencia en el uso de recursos y la regeneración de los sistemas productivos.
+      </p>
+      <p class="what__summary">
+        AKAI transforma datos fisiológicos, ambientales y agronómicos en inteligencia accionable para aumentar la
+        productividad, acelerar la agricultura regenerativa y apoyar la descarbonización.
+      </p>
+      <div class="what__grid">
+        {
+          whatItems.map((w) => (
+            <div class="what__item">
+              <span class="what__marker" aria-hidden="true" />
+              <span>{w}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="problems">
+    <div class="problems__head">
+      <div class="problems__eyebrow">Qué problemas resolvemos</div>
+      <p class="problems__close">
+        AKAI convierte datos complejos del campo en decisiones precisas que incrementan la productividad, reducen
+        costos, disminuyen riesgos y demuestran el impacto ambiental.
+      </p>
+    </div>
+    <div class="problems__grid">
+      {
+        problems.map((p) => (
+          <div class="problems__item">
+            <span class="problems__marker" aria-hidden="true" />
+            <span>{p}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sectors">
+    <h2 class="sectors__label">Sectores</h2>
+    {
+      sectors.map((s) => (
+        <div class="sectors__row">
+          <div class="sectors__media">
+            <video muted loop playsinline preload="none" data-lazy data-src={s.video} poster={s.poster} class="sectors__video" />
+            {s.video2 && (
+              <div class="sectors__inset">
+                <video muted loop playsinline preload="none" data-lazy data-src={s.video2} class="sectors__video" />
+              </div>
+            )}
+          </div>
+          <div class="sectors__body">
+            <div class="sectors__tag">{s.tag}</div>
+            <h3 class="sectors__title">{s.title}</h3>
+            {s.desc && <p class="sectors__desc">{s.desc}</p>}
+            <div class="sectors__services">
+              {s.services.map((sv) => (
+                <span class="sectors__chip">{sv}</span>
+              ))}
+            </div>
+            {s.link && (
+              <a href={s.link} class="sectors__link">
+                {s.linkLabel} →
+              </a>
+            )}
+          </div>
+        </div>
+      ))
+    }
+    <div class="sectors__pending" role="note">
+      PENDIENTE — diapositiva del proceso AKAI (entregada por el cliente, extraer del docx)
+    </div>
+  </section>
+</BaseLayout>
+
+<script src="../../scripts/home.ts"></script>
+
+<style>
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #050505;
+    transition: opacity 0.8s ease;
+  }
+  .intro.is-fading {
+    opacity: 0;
+  }
+  .intro.is-done {
+    pointer-events: none;
+  }
+  .intro__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .intro__tagline {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    font-size: clamp(14px, 2.2vw, 22px);
+    text-align: center;
+    padding: 0 24px;
+  }
+  .intro__skip {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: var(--tracking-wide);
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: var(--radius-sharp);
+  }
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-ink);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+  }
+  .hero__panel {
+    position: absolute;
+    z-index: 2;
+    text-align: right;
+    animation: akaiFadeUp 0.7s ease both;
+    background: var(--color-ink);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 14px 20px;
+    border-radius: 3px;
+  }
+  .hero__panel--desktop {
+    display: none;
+    top: 96px;
+    right: 40px;
+    max-width: 30vw;
+  }
+  .hero__panel--mobile {
+    bottom: 24px;
+    right: 40px;
+    max-width: 44vw;
+  }
+  .hero__counter {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero__sector {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(18px, 2.2vw, 30px);
+    color: #fff;
+    letter-spacing: var(--tracking-wide);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 40px 72px;
+    max-width: 1020px;
+  }
+  .hero__logo {
+    height: auto;
+    width: min(48vw, 560px);
+    margin-bottom: var(--space-8);
+  }
+  .hero__head {
+    margin: 0 0 18px;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(32px, 5vw, 76px);
+    line-height: 1.05;
+  }
+  .hero__sub {
+    margin: 0 0 30px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: clamp(14px, 1.2vw, 18px);
+    max-width: 640px;
+    line-height: 1.5;
+  }
+  .hero__ctas {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .hero__cta-primary {
+    background: #fff;
+    color: var(--color-ink);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 14px 28px;
+    border-radius: var(--radius-sharp);
+  }
+  .hero__cta-secondary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    padding: 13px 24px;
+    border-radius: var(--radius-sharp);
+  }
+
+  @media (min-width: 900px) {
+    .hero__panel--desktop {
+      display: block;
+    }
+    .hero__panel--mobile {
+      display: none;
+    }
+  }
+
+  .belief {
+    width: 100%;
+    padding: 110px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+  }
+  .belief__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .belief__head {
+    margin: 0;
+    max-width: 940px;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    font-size: clamp(28px, 4vw, 54px);
+    line-height: 1.16;
+  }
+  .belief__body {
+    margin: 0;
+    max-width: 720px;
+    color: var(--color-neutral-700);
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.6;
+  }
+  .belief__origin {
+    margin: 0;
+    color: var(--color-neutral-500);
+    font-size: 14px;
+  }
+  .belief__countries {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 820px;
+  }
+  .belief__chip {
+    padding: 7px 14px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sharp);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .belief__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--color-border-strong);
+    border: 1px solid var(--color-border-strong);
+    max-width: 900px;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .belief__stat-cell {
+    background: var(--color-paper);
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .belief__stat-cell--text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--color-ink);
+    line-height: 1.4;
+  }
+  .belief__stat-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 3vw, 42px);
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  .belief__stat-label {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--color-neutral-600);
+  }
+
+  .what {
+    width: 100%;
+    padding: 90px 40px;
+    background: var(--color-ink);
+  }
+  .what__inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+  .what__head {
+    margin: 0 0 22px;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
+    font-size: clamp(20px, 2.4vw, 32px);
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+  .what__intro {
+    margin: 0 0 18px;
+    max-width: 840px;
+    color: #c9c9c9;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .what__summary {
+    margin: 0 0 36px;
+    max-width: 760px;
+    color: var(--color-accent-tint);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(15px, 1.4vw, 19px);
+    line-height: 1.45;
+  }
+  .what__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .what__item {
+    background: var(--color-ink);
+    padding: 26px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: #e6e6e6;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .what__marker {
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent-tint);
+    transform: rotate(45deg);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .problems {
+    width: 100%;
+    padding: 110px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .problems__head {
+    text-align: center;
+  }
+  .problems__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .problems__close {
+    margin: 0;
+    max-width: 760px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 2.4vw, 32px);
+    color: var(--color-ink);
+    line-height: 1.3;
+  }
+  .problems__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--color-border);
+    width: 100%;
+  }
+  .problems__item {
+    background: var(--color-paper);
+    padding: 24px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: var(--color-neutral-700);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .problems__marker {
+    width: 7px;
+    height: 7px;
+    background: var(--color-accent);
+    transform: rotate(45deg);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .sectors {
+    width: 100%;
+    padding: 0 40px 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .sectors__label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .sectors__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    border: 1px solid var(--color-border);
+  }
+  .sectors__media {
+    position: relative;
+    min-height: 300px;
+    background: var(--color-ink);
+    overflow: hidden;
+  }
+  .sectors__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .sectors__inset {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    width: 150px;
+    height: 96px;
+    overflow: hidden;
+    padding: 4px;
+    background: rgba(10, 10, 10, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 3px;
+  }
+  .sectors__inset .sectors__video {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+  .sectors__body {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    background: var(--color-paper);
+  }
+  .sectors__tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .sectors__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(19px, 1.9vw, 25px);
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+  .sectors__desc {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-neutral-600);
+    line-height: 1.55;
+  }
+  .sectors__services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sectors__chip {
+    padding: 6px 12px;
+    background: var(--color-neutral-100);
+    border-radius: var(--radius-sharp);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-neutral-700);
+  }
+  .sectors__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-top: 4px;
+  }
+  .sectors__pending {
+    border: 1px dashed var(--color-border-strong);
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-neutral-400);
+    text-transform: uppercase;
+    text-align: center;
+  }
+</style>

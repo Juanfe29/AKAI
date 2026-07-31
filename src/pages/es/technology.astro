@@ -1,0 +1,641 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatBlock from '../../components/StatBlock.astro';
+
+// Total de datos fisiológicos usados a la fecha — actualizar mensualmente (ver Technology.dc.html origen).
+const dataPointsStat = '20.069';
+
+const dashboards = [
+  {
+    farm: 'Finca Tesalia',
+    view: 'Vista Espacial',
+    desc: 'Índices de vegetación (tipo NDVI) por dron y satélite.',
+    url: 'https://indicesdevegetaciontesaliagrupohame.netlify.app/',
+  },
+  {
+    farm: 'Finca Tesalia',
+    view: 'Vista Fisiológica',
+    desc: 'Índices de sensores en planta y suelo.',
+    url: 'https://indicesfisiotesaliagrupohame.netlify.app/',
+  },
+  {
+    farm: 'Finca El Bosque',
+    view: 'Vista Espacial',
+    desc: 'Índices de vegetación (tipo NDVI) por dron y satélite.',
+    url: 'https://indicesdevegetacionelbosquegrupohame.netlify.app/',
+  },
+  {
+    farm: 'Finca El Bosque',
+    view: 'Vista Fisiológica',
+    desc: 'Índices de sensores en planta y suelo.',
+    url: 'https://indicesfisioelbosquegrupohame.netlify.app/',
+  },
+];
+const dashTabs = dashboards.map((d) => d.farm.replace('Finca ', '') + ' · ' + d.view.replace('Vista ', ''));
+
+const trlRows = [
+  { component: 'Plataforma de inteligencia fisiológica', trl: '8', status: 'Validada en condiciones reales con múltiples cultivos y clientes.' },
+  { component: 'Modelos predictivos con IA', trl: '7–8', status: 'Demostrados y refinados en entornos operacionales, con expansión continua de bases de datos.' },
+  { component: 'Sistema de monitoreo fisiológico (sensores, UAV, dashboards)', trl: '8', status: 'Implementado en proyectos comerciales.' },
+  { component: 'MRV para agricultura regenerativa y carbono', trl: '6–7', status: 'Validación operativa en proyectos piloto y primeras implementaciones comerciales.' },
+  { component: 'Nuevos modelos de carbono y regeneración de suelos', trl: '5–6', status: 'En fase de demostración y consolidación científica.' },
+];
+
+const phases = [
+  { num: 'Fase 1', title: 'Investigación científica', body: 'Desarrollo de conocimiento en fisiología vegetal, sensores y análisis de datos.' },
+  { num: 'Fase 2', title: 'Validación tecnológica', body: 'Construcción de algoritmos, protocolos y pilotos experimentales en diferentes cultivos.' },
+  { num: 'Fase 3', title: 'Comercialización', body: 'Proyectos con empresas agrícolas, fabricantes de bioinsumos, universidades y organizaciones del sector.' },
+  { num: 'Fase 4 — actual', title: 'Escalamiento', body: 'Consolidación como plataforma tecnológica: IA, agricultura regenerativa, MRV de carbono y soluciones digitales multisectoriales.', current: true },
+];
+---
+
+<BaseLayout
+  lang="es"
+  slug="technology"
+  title="Tecnología — AKAI"
+  description="Construcción de conocimiento basado en sensores e inteligencia de datos. Algoritmos adaptados a la necesidad del cliente. Tableros de decisión en producción."
+>
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero__video" poster="/media/posters/sensor.jpg" src="/media/sensor.mp4"></video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <h1 class="hero__head">Construcción de conocimiento, basado en sensores e inteligencia de datos</h1>
+      <p class="hero__sub">Algoritmos adaptados a la necesidad del cliente.</p>
+    </div>
+  </section>
+
+  <section class="hwsw">
+    <div class="hwsw__grid">
+      <div class="hwsw__cell">
+        <h2 class="hwsw__label">Hardware</h2>
+        <p class="hwsw__body">
+          Usamos sensores multiespectrales y RGB, voltímetros digitales de ALTA RESOLUCIÓN, fluorómetros de campo y
+          espectro radiómetros.
+        </p>
+      </div>
+      <div class="hwsw__cell">
+        <h2 class="hwsw__label">Software</h2>
+        <p class="hwsw__body">
+          Plataformas web, dashboards asociados a los límites relacionados al desempeño de las variables, y
+          algoritmos de IA diseñados a la medida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-card">
+    <div class="stat-card__inner">
+      <div class="stat-card__pending" role="note">
+        PENDIENTE — gráfica de clima de una zona de Panamá (similar a la actual)
+      </div>
+      <StatBlock stats={[{ value: dataPointsStat, label: 'Datos fisiológicos usados a la fecha' }]} dark />
+    </div>
+  </section>
+
+  <section class="dash" data-dash>
+    <div class="dash__intro">
+      <div class="dash__tag">Tablero de decisión — en producción</div>
+      <h2 class="dash__head">Un solo tablero, todas las perspectivas.</h2>
+      <p class="dash__body">
+        Integramos todos los muestreos en un único tablero de decisión, con perspectivas temporal y espacial sobre
+        el mismo cultivo. Estos tableros están en producción para Grupo Hame: dos fincas, cada una con vista
+        espacial (índices de vegetación por dron/satélite) y vista fisiológica (índices de sensores en planta y
+        suelo).
+      </p>
+    </div>
+
+    <div class="dash__tabs" role="tablist" aria-label="Tableros de Grupo Hame">
+      {
+        dashboards.map((d, i) => (
+          <button
+            type="button"
+            class="dash__tab"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-dash-tab
+            data-url={d.url}
+            data-desc={`${d.farm} · ${d.view} — ${d.desc}`}
+            data-label={`${d.farm} — ${d.view}`}
+          >
+            {dashTabs[i]}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="dash__frame">
+      <div class="dash__chrome" aria-hidden="true">
+        <span class="dash__dot dash__dot--red"></span>
+        <span class="dash__dot dash__dot--yellow"></span>
+        <span class="dash__dot dash__dot--green"></span>
+        <span class="dash__chrome-url" data-dash-url>{dashboards[0].url}</span>
+      </div>
+      <iframe
+        class="dash__iframe"
+        data-dash-iframe
+        src={dashboards[0].url}
+        title={`${dashboards[0].farm} — ${dashboards[0].view}`}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+      ></iframe>
+    </div>
+
+    <div class="dash__footer">
+      <div class="dash__desc" data-dash-desc>
+        {dashboards[0].farm} · {dashboards[0].view} — {dashboards[0].desc}
+      </div>
+      <a class="dash__open" data-dash-open href={dashboards[0].url} target="_blank" rel="noopener">
+        Abrir tablero <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="dash__footer-row">
+      <div class="dash__client">Cliente: Grupo Hame — tableros reales en producción, no demos.</div>
+    </div>
+  </section>
+
+  <section class="trl">
+    <div class="trl__intro">
+      <h2 class="trl__label">Madurez tecnológica</h2>
+      <p class="trl__head">TRL 8 — tecnología validada en entornos operacionales reales.</p>
+      <p class="trl__body">
+        AKAI puede considerarse una empresa en TRL 8: la tecnología ya ha sido desarrollada, integrada y validada en
+        entornos reales con clientes, aunque continúa evolucionando hacia soluciones más escalables y
+        estandarizadas.
+      </p>
+    </div>
+    <div class="trl__table">
+      <div class="trl__th">Componente</div>
+      <div class="trl__th">TRL</div>
+      <div class="trl__th">Estado</div>
+      {
+        trlRows.map((r) => (
+          <>
+            <div class="trl__td trl__td--component">{r.component}</div>
+            <div class="trl__td trl__td--trl">{r.trl}</div>
+            <div class="trl__td trl__td--status">{r.status}</div>
+          </>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="phases">
+    <h2 class="phases__label">Evolución en cuatro etapas</h2>
+    <div class="phases__grid">
+      {
+        phases.map((p) => (
+          <div class:list={['phases__cell', { 'phases__cell--current': p.current }]}>
+            <div class="phases__num">{p.num}</div>
+            <div class="phases__title">{p.title}</div>
+            <div class="phases__body">{p.body}</div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="phases__closing">
+      AKAI ha alcanzado un TRL 8, con tecnologías validadas en condiciones operacionales reales y un portafolio
+      comercial activo. La empresa se encuentra en fase de escalamiento.
+    </p>
+    <p class="phases__note">
+      El TRL se asigna por tecnología, no por empresa. Cada solución del portafolio puede tener un TRL distinto,
+      aunque el portafolio principal esté alrededor de TRL 8.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-dash]').forEach((root) => {
+    const tabs = root.querySelectorAll<HTMLButtonElement>('[data-dash-tab]');
+    const iframe = root.querySelector<HTMLIFrameElement>('[data-dash-iframe]');
+    const urlLabel = root.querySelector<HTMLElement>('[data-dash-url]');
+    const desc = root.querySelector<HTMLElement>('[data-dash-desc]');
+    const openLink = root.querySelector<HTMLAnchorElement>('[data-dash-open]');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+        tab.setAttribute('aria-selected', 'true');
+        const url = tab.dataset.url || '';
+        if (iframe) {
+          iframe.src = url;
+          iframe.title = tab.dataset.label || '';
+        }
+        if (urlLabel) urlLabel.textContent = url;
+        if (desc) desc.textContent = tab.dataset.desc || '';
+        if (openLink) openLink.href = url;
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: var(--color-ink);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.25) 45%, rgba(0, 0, 0, 0.75) 100%);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--section-padding-x) 80px;
+    max-width: 960px;
+  }
+  .hero__head {
+    margin: 0 0 12px;
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: clamp(28px, 4.2vw, 58px);
+    line-height: 1.08;
+  }
+  .hero__sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: var(--text-body-lg);
+    max-width: 620px;
+    line-height: 1.5;
+  }
+
+  .hwsw {
+    width: 100%;
+    padding: var(--space-14) var(--section-padding-x) var(--space-10);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .hwsw__grid {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .hwsw__cell {
+    background: var(--color-ink);
+    padding: var(--space-8);
+  }
+  .hwsw__label {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-tint);
+    text-transform: uppercase;
+  }
+  .hwsw__body {
+    margin: 0;
+    color: #e6e6e6;
+    font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
+  }
+
+  .stat-card {
+    width: 100%;
+    padding: 0 var(--section-padding-x) var(--space-10);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .stat-card__inner {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: var(--space-8);
+    background: #111111;
+  }
+  .stat-card__pending {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: var(--space-4);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+  }
+
+  .dash {
+    width: 100%;
+    padding: var(--space-10) var(--section-padding-x) var(--space-14);
+    display: flex;
+    justify-content: center;
+    background: var(--color-ink);
+  }
+  .dash__intro,
+  .dash__tabs,
+  .dash__frame,
+  .dash__footer,
+  .dash__client {
+    max-width: var(--content-max-width);
+    width: 100%;
+  }
+  .dash {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dash__intro {
+    margin-bottom: var(--space-7);
+  }
+  .dash__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-tint);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+  .dash__head {
+    margin: 0 0 var(--space-4);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1.15;
+  }
+  .dash__body {
+    margin: 0;
+    max-width: 720px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+  .dash__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+  .dash__tab {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: var(--weight-semibold);
+    padding: 10px 16px;
+    border-radius: var(--radius-sharp);
+    cursor: pointer;
+  }
+  .dash__tab[aria-selected='true'] {
+    background: #fff;
+    color: var(--color-ink);
+    border-color: #fff;
+  }
+  .dash__frame {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--color-ink);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+  }
+  .dash__chrome {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .dash__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dash__dot--red {
+    background: #ff5f57;
+  }
+  .dash__dot--yellow {
+    background: #febc2e;
+  }
+  .dash__dot--green {
+    background: #28c840;
+  }
+  .dash__chrome-url {
+    margin-left: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dash__iframe {
+    width: 100%;
+    height: calc(100% - 41px);
+    border: none;
+    display: block;
+    background: #fff;
+  }
+  .dash__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+  }
+  .dash__desc {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .dash__open {
+    background: #fff;
+    color: var(--color-ink);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-small);
+    padding: 11px 20px;
+    border-radius: var(--radius-sharp);
+  }
+  .dash__client {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .dash__footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .trl {
+    width: 100%;
+    padding: var(--space-15) var(--section-padding-x) var(--space-11);
+    display: flex;
+    justify-content: center;
+  }
+  .trl__intro {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin-bottom: var(--space-7);
+  }
+  .trl__label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .trl__head {
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.015em;
+    font-size: clamp(22px, 2.8vw, 38px);
+    line-height: 1.2;
+  }
+  .trl__body {
+    margin: 0;
+    max-width: 760px;
+    font-size: var(--text-body);
+    color: var(--color-neutral-600);
+    line-height: 1.6;
+  }
+  .trl__table {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(200px, 1.3fr) minmax(90px, 0.5fr) minmax(220px, 1.4fr);
+    gap: 1px;
+    background: var(--color-border-strong);
+  }
+  .trl__th {
+    background: var(--color-neutral-100);
+    padding: 14px 18px;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .trl__td {
+    background: var(--color-paper);
+    padding: 20px 18px;
+    font-size: var(--text-small);
+    line-height: 1.5;
+  }
+  .trl__td--component {
+    font-weight: var(--weight-semibold);
+    color: var(--color-ink);
+    line-height: 1.45;
+  }
+  .trl__td--trl {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: var(--weight-bold);
+    color: var(--color-accent);
+  }
+  .trl__td--status {
+    color: var(--color-neutral-600);
+  }
+
+  .phases {
+    width: 100%;
+    padding: var(--space-2) var(--section-padding-x) var(--space-15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .phases__label {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .phases__grid {
+    max-width: var(--content-max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--color-border-strong);
+  }
+  .phases__cell {
+    background: var(--color-paper);
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .phases__cell--current {
+    background: var(--color-accent);
+  }
+  .phases__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+  }
+  .phases__cell--current .phases__num {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .phases__title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 16px;
+    color: var(--color-ink);
+  }
+  .phases__cell--current .phases__title {
+    color: #fff;
+  }
+  .phases__body {
+    font-size: 12px;
+    color: var(--color-neutral-600);
+    line-height: 1.5;
+  }
+  .phases__cell--current .phases__body {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .phases__closing {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: clamp(16px, 1.8vw, 22px);
+    color: var(--color-ink);
+    line-height: 1.4;
+  }
+  .phases__note {
+    max-width: var(--content-max-width);
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-neutral-400);
+    line-height: 1.5;
+  }
+</style>

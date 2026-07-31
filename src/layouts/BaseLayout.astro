@@ -1,0 +1,85 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_URL, altPath, type Lang } from '../i18n/site';
+import '../styles/global.css';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+  footerDark?: boolean;
+}
+
+const {
+  lang,
+  slug,
+  title,
+  description,
+  ogImage = '/assets/akai-logo.png',
+  noindex = false,
+  footerDark = false,
+} = Astro.props;
+
+const canonicalPath = altPath(slug, lang);
+const canonicalUrl = new URL(canonicalPath, SITE_URL).toString();
+const esUrl = new URL(altPath(slug, 'es'), SITE_URL).toString();
+const enUrl = new URL(altPath(slug, 'en'), SITE_URL).toString();
+const absoluteOgImage = new URL(ogImage, SITE_URL).toString();
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AKAI',
+  legalName: 'AKAI S.A.S.',
+  url: SITE_URL,
+  logo: new URL('/assets/akai-logo.png', SITE_URL).toString(),
+  description:
+    lang === 'es'
+      ? 'AKAI S.A.S. es una empresa de ciencia de datos e inteligencia artificial aplicada a agricultura, agroinsumos, minería, alimentos, banca y seguros, y medio ambiente.'
+      : 'AKAI builds applied data science and AI for agriculture, ag-inputs, mining, food, banking & insurance, and environment sectors.',
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/fonts.css" as="style" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  </head>
+  <body>
+    <Nav lang={lang} slug={slug} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} dark={footerDark} />
+    <script src="../scripts/lazy-video.ts"></script>
+    <script src="../scripts/disclosure.ts"></script>
+  </body>
+</html>

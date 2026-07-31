@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const t = {
+  eyebrow: 'Cómo funciona',
+  headline: 'Un solo proceso, del suelo a la decisión.',
+  pipelineHeading: 'Diagrama del proceso',
+  cluster: [
+    { shape: 'circle', label: 'Dron', copy: 'Imágenes aéreas y bajo invernadero, multiespectral y RGB.' },
+    { shape: 'square', label: 'Sensores remotos', copy: 'Captura características y señales espectrales.' },
+    { shape: 'diamond', label: 'Sensores proximales', copy: 'Captura características y señales espectrales de cerca.' },
+    { shape: 'dashed-circle', label: 'Internet de las cosas', copy: 'Captura características ambientales en tiempo real.' },
+  ],
+  phenoLabel: 'Fenotipado de rasgos fisiológicos',
+  phenoCopy: 'Discrimina características de desempeño en caso de trabajos biológicos.',
+  equation: 'Rendimiento = EUA + EUN',
+  equationSub: 'Eficiencia de uso de agua + Eficiencia de uso de nutrientes',
+  equationCopy: 'Los rasgos se convierten en pronóstico: rendimiento = eficiencia de agua + eficiencia de nutrientes.',
+  roiCopy: 'El pronóstico se convierte en una decisión económica.',
+  predictive: 'De los DATOS al PRONÓSTICO ….. Del pronóstico a la DECISIÓN',
+  leafLine: 'Cada hectárea se convierte en un dato — agricultura, minería, petróleo, clima.',
+  scrollNext: 'Caso de estudio',
+};
+---
+
+<BaseLayout
+  lang="es"
+  slug="process"
+  title="Cómo funciona — AKAI"
+  description="Un solo proceso del dato a la decisión: dron, sensores remotos y proximales, e IoT alimentan modelos predictivos — de rendimiento agrícola a riesgo minero y ambiental — hasta una decisión económica."
+>
+  <section class="pipeline">
+    <div class="pipeline__intro">
+      <p class="pipeline__eyebrow">{t.eyebrow}</p>
+      <h1 class="pipeline__headline">{t.headline}</h1>
+    </div>
+
+    <h2 class="visually-hidden">{t.pipelineHeading}</h2>
+
+    <div class="pipeline__flow">
+      <ul class="pipeline__cluster" style="animation-delay:0.05s">
+        {
+          t.cluster.map((n) => (
+            <li class="pipeline__card">
+              <span class:list={['pipeline__icon', `pipeline__icon--${n.shape}`]} aria-hidden="true" />
+              <span class="pipeline__label">{n.label}</span>
+              <span class="pipeline__copy">{n.copy}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <span class="pipeline__arrow" aria-hidden="true" style="animation-delay:0.2s">→</span>
+
+      <div class="pipeline__node pipeline__node--pheno" style="animation-delay:0.3s">
+        <div class="pipeline__label">{t.phenoLabel}</div>
+        <div class="pipeline__copy">{t.phenoCopy}</div>
+      </div>
+
+      <span class="pipeline__arrow" aria-hidden="true" style="animation-delay:0.4s">→</span>
+
+      <div class="pipeline__node pipeline__node--equation" style="animation-delay:0.5s">
+        <div class="pipeline__equation">{t.equation}</div>
+        <div class="pipeline__equation-sub">{t.equationSub}</div>
+        <div class="pipeline__copy pipeline__copy--dark">{t.equationCopy}</div>
+      </div>
+
+      <span class="pipeline__arrow" aria-hidden="true" style="animation-delay:0.6s">→</span>
+
+      <div class="pipeline__node pipeline__node--roi" style="animation-delay:0.7s">
+        <div class="pipeline__roi">ROI</div>
+        <div class="pipeline__copy pipeline__copy--dark">{t.roiCopy}</div>
+      </div>
+    </div>
+
+    <p class="pipeline__predictive">{t.predictive}</p>
+  </section>
+
+  <section class="leaf">
+    <video
+      data-lazy
+      data-src="/media/network-multisector.mp4"
+      muted
+      loop
+      playsinline
+      preload="none"
+      poster="/media/posters/network-multisector.jpg"
+      class="leaf__video"
+    ></video>
+    <div class="leaf__scrim" aria-hidden="true"></div>
+    <h2 class="leaf__headline">{t.leafLine}</h2>
+  </section>
+
+  <div class="scroll-next">
+    <a href="/es/case-studies/palm/" class="scroll-next__link">
+      <span>{t.scrollNext}</span>
+      <span class="scroll-next__arrow" aria-hidden="true">↓</span>
+    </a>
+  </div>
+</BaseLayout>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .pipeline {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-11);
+    padding: 140px var(--section-padding-x) var(--space-13);
+  }
+  .pipeline__intro {
+    max-width: 760px;
+    text-align: center;
+  }
+  .pipeline__eyebrow {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+  .pipeline__headline {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    font-size: var(--text-h2);
+    line-height: var(--leading-snug);
+  }
+
+  .pipeline__flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    max-width: 1180px;
+  }
+
+  .pipeline__cluster {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: akaiFadeUp 0.7s ease both;
+  }
+  .pipeline__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    width: 168px;
+    padding: var(--space-5) var(--space-4);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sharp);
+  }
+  .pipeline__icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--color-accent);
+  }
+  .pipeline__icon--circle {
+    border-radius: var(--radius-round);
+  }
+  .pipeline__icon--square {
+    border-radius: var(--radius-sharp);
+  }
+  .pipeline__icon--diamond {
+    border-radius: var(--radius-sharp);
+    transform: rotate(45deg);
+  }
+  .pipeline__icon--dashed-circle {
+    border-radius: var(--radius-round);
+    border-style: dashed;
+  }
+  .pipeline__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-wide);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .pipeline__copy {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    color: var(--color-neutral-500);
+    text-align: center;
+    line-height: 1.35;
+  }
+  .pipeline__copy--dark {
+    color: var(--color-on-dark-muted);
+  }
+
+  .pipeline__arrow {
+    font-size: 22px;
+    color: var(--color-neutral-400);
+    padding: 0 var(--space-1);
+    animation: akaiFadeUp 0.7s ease both;
+  }
+
+  .pipeline__node {
+    padding: var(--space-6) var(--space-5);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sharp);
+    width: 168px;
+    text-align: center;
+    animation: akaiFadeUp 0.7s ease both;
+  }
+  .pipeline__node--pheno .pipeline__label {
+    margin-bottom: var(--space-2);
+  }
+  .pipeline__node--equation {
+    background: var(--color-ink);
+    width: 230px;
+  }
+  .pipeline__node--equation .pipeline__equation {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 15px;
+    color: var(--color-on-dark);
+    margin-bottom: var(--space-2);
+  }
+  .pipeline__node--equation .pipeline__equation-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    color: var(--color-on-dark-muted);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-3);
+  }
+  .pipeline__node--roi {
+    background: var(--color-accent);
+  }
+  .pipeline__node--roi .pipeline__roi {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 26px;
+    color: var(--color-on-dark);
+    margin-bottom: var(--space-3);
+  }
+
+  .pipeline__predictive {
+    margin: 0;
+    max-width: 640px;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-neutral-600);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .leaf {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    background: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .leaf__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .leaf__scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--color-overlay-dark-soft);
+    z-index: 1;
+  }
+  .leaf__headline {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    max-width: 900px;
+    padding: 0 var(--space-6);
+    text-align: center;
+    color: var(--color-on-dark);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-h3);
+  }
+
+  .scroll-next {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-9) 0;
+  }
+  .scroll-next__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
+  }
+  .scroll-next__arrow {
+    display: inline-block;
+    font-size: 18px;
+    transform: translateY(1px);
+  }
+</style>
