@@ -103,7 +103,7 @@ const sectors = [
     <video data-intro-video autoplay muted playsinline class="intro__video" poster="/media/posters/intro-shoots.jpg">
       <source src="/media/intro-shoots.mp4" type="video/mp4" />
     </video>
-    <div class="intro__tagline" data-intro-tagline hidden>APPLIED · KNOWLEDGE · ARTIFICIAL · INTELLIGENCE</div>
+    <div class="intro__tagline" data-intro-tagline hidden><span>APPLIED · KNOWLEDGE · ARTIFICIAL · INTELLIGENCE</span></div>
     <button type="button" class="intro__skip" data-intro-skip>Omitir intro</button>
   </div>
 
@@ -247,7 +247,7 @@ const sectors = [
       ))
     }
     <div class="sectors__pending" role="note">
-      PENDIENTE — diapositiva del proceso AKAI (entregada por el cliente, extraer del docx)
+      <span>PENDIENTE — diapositiva del proceso AKAI (entregada por el cliente, extraer del docx)</span>
     </div>
   </section>
 </BaseLayout>
@@ -289,6 +289,12 @@ const sectors = [
     font-size: clamp(14px, 2.2vw, 22px);
     text-align: center;
     padding: 0 24px;
+  }
+  .intro__tagline span {
+    /* Flex items default to min-width:auto (their unwrapped content width), which stops
+       long text from wrapping and lets it overflow the viewport on narrow screens instead.
+       min-width:0 restores normal text wrapping inside the flex item. */
+    min-width: 0;
   }
   .intro__skip {
     position: absolute;
@@ -749,5 +755,10 @@ const sectors = [
     color: var(--color-neutral-400);
     text-transform: uppercase;
     text-align: center;
+  }
+  .sectors__pending span {
+    /* Same flex min-width:auto fix as .intro__tagline — without this the sentence
+       refuses to wrap and overflows the box on narrow screens. */
+    min-width: 0;
   }
 </style>

@@ -140,6 +140,12 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
   .nav__dropdown-panel a:last-child {
     border-bottom: none;
   }
+  .nav__dropdown-panel[hidden] {
+    /* `display: flex` above always beats the UA stylesheet's [hidden] rule (author
+       styles win over UA styles at equal specificity), so without this override the
+       panel never actually retracts — it just sits open regardless of aria-expanded. */
+    display: none;
+  }
   .nav__actions {
     display: flex;
     align-items: center;
@@ -203,6 +209,11 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     font-weight: var(--weight-medium);
     color: var(--color-ink);
     padding: var(--space-3) 0;
+  }
+  .nav__mobile[hidden] {
+    /* Same [hidden]-vs-display:flex issue as .nav__dropdown-panel above — without this,
+       the mobile menu panel is stuck permanently open below the 900px breakpoint. */
+    display: none;
   }
 
   @media (min-width: 900px) {
