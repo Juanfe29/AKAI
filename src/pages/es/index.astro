@@ -246,9 +246,6 @@ const sectors = [
         </div>
       ))
     }
-    <div class="sectors__pending" role="note">
-      <span>PENDIENTE — diapositiva del proceso AKAI (entregada por el cliente, extraer del docx)</span>
-    </div>
   </section>
 </BaseLayout>
 
@@ -742,23 +739,5 @@ const sectors = [
     font-weight: 600;
     color: var(--color-accent);
     margin-top: 4px;
-  }
-  .sectors__pending {
-    border: 1px dashed var(--color-border-strong);
-    padding: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-neutral-400);
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .sectors__pending span {
-    /* Same flex min-width:auto fix as .intro__tagline — without this the sentence
-       refuses to wrap and overflows the box on narrow screens. */
-    min-width: 0;
   }
 </style>

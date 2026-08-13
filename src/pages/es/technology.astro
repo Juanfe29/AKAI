@@ -91,9 +91,6 @@ const phases = [
 
   <section class="stat-card">
     <div class="stat-card__inner">
-      <div class="stat-card__pending" role="note">
-        PENDIENTE — gráfica de clima de una zona de Panamá (similar a la actual)
-      </div>
       <StatBlock stats={[{ value: dataPointsStat, label: 'Datos fisiológicos usados a la fecha' }]} dark />
     </div>
   </section>
@@ -332,17 +329,6 @@ const phases = [
     padding: var(--space-8);
     background: #111111;
   }
-  .stat-card__pending {
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    padding: var(--space-4);
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: var(--tracking-wide);
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: uppercase;
-  }
-
   .dash {
     width: 100%;
     padding: var(--space-10) var(--section-padding-x) var(--space-14);
