@@ -71,8 +71,13 @@ const stats = [
     <h2 class="results__label">Results</h2>
     <StatBlock stats={stats} />
     <p class="results__why">
-      At plantation scale, the value isn't a prettier map — it's catching a stressed block early enough to act on
+      At plantation scale, it isn't just a map — it's catching a stressed block early enough to act on
       it, and knowing which hectares to prioritize when resources are limited.
+    </p>
+
+    <p class="results__lead">
+      BEFORE SYMPTOMS APPEAR, the interaction between the instruments measuring crop metabolism and the
+      geopositioning provided by the drone makes it possible to take THE RIGHT decisions.
     </p>
 
     <div class="disclosure" data-disclosure>
@@ -241,6 +246,16 @@ const stats = [
     color: var(--color-neutral-700);
     line-height: var(--leading-normal);
     font-weight: var(--weight-medium);
+    margin: 0;
+  }
+
+  .results__lead {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+    font-weight: var(--weight-semibold);
     margin: 0;
   }
 

@@ -30,6 +30,12 @@ const dashboards = [
     desc: 'Índices de sensores en planta y suelo.',
     url: 'https://indicesfisioelbosquegrupohame.netlify.app/',
   },
+  {
+    farm: 'Panamá',
+    view: 'Vista Agroclimática',
+    desc: 'Variables agroclimáticas y su relación con el desempeño del cultivo.',
+    url: 'https://agroclimaticopanama.netlify.app/',
+  },
 ];
 const dashTabs = dashboards.map((d) => d.farm.replace('Finca ', '') + ' · ' + d.view.replace('Vista ', ''));
 

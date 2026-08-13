@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { dialCodes } from '../../i18n/phone-codes';
 ---
 
 <BaseLayout
@@ -39,6 +40,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div class="form__field">
             <label for="contact-email" class="form__label">Correo</label>
             <input id="contact-email" name="email" type="email" required class="form__input" />
+          </div>
+          <div class="form__field">
+            <label for="contact-phone" class="form__label">Teléfono</label>
+            <div class="form__phone">
+              <select id="contact-dial" name="dialCode" class="form__input form__input--dial" aria-label="Código de país">
+                {dialCodes.map((c) => <option value={c.code}>{c.code} {c.name}</option>)}
+              </select>
+              <input id="contact-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" class="form__input" />
+            </div>
           </div>
           <div class="form__field">
             <label for="contact-company" class="form__label">Empresa</label>
@@ -163,6 +173,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+  }
+  .form__phone {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .form__phone .form__input {
+    min-width: 0; /* let the tel input shrink instead of overflowing the panel */
+  }
+  .form__input--dial {
+    flex: 0 0 8.5rem;
   }
   .form__label {
     font-family: var(--font-mono);

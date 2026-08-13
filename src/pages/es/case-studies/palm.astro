@@ -71,8 +71,13 @@ const stats = [
     <h2 class="results__label">Resultados</h2>
     <StatBlock stats={stats} />
     <p class="results__why">
-      A escala de plantación, el valor no es un mapa más bonito — es detectar un bloque estresado a tiempo para
+      A escala de plantación, no es solo un mapa — es detectar un bloque estresado a tiempo para
       actuar, y saber qué hectáreas priorizar cuando los recursos son limitados.
+    </p>
+
+    <p class="results__lead">
+      ANTES DE QUE APAREZCAN LOS SÍNTOMAS, la interacción entre los equipos que miden el metabolismo del cultivo y
+      la geoposición que da el dron, permite tomar decisiones ACERTADAS.
     </p>
 
     <div class="disclosure" data-disclosure>
@@ -241,6 +246,16 @@ const stats = [
     color: var(--color-neutral-700);
     line-height: var(--leading-normal);
     font-weight: var(--weight-medium);
+    margin: 0;
+  }
+
+  .results__lead {
+    max-width: 680px;
+    text-align: center;
+    font-size: var(--text-body);
+    color: var(--color-ink);
+    line-height: var(--leading-normal);
+    font-weight: var(--weight-semibold);
     margin: 0;
   }
 

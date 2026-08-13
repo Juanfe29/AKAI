@@ -17,8 +17,8 @@ const disciplines = [
 // team roster has not been provided yet, so no additional placeholder cards
 // are invented here.
 const members = [
-  { name: 'I.A. PhD Diego Felipe Conejo Rodríguez', role: 'CEO' },
-  { name: 'I.A. Héctor Estrada', role: 'Líder de gestión operativa' },
+  { name: 'I.A. PhD Diego Felipe Conejo Rodríguez', role: 'CEO', photo: '/assets/team/diego-conejo.jpg' },
+  { name: 'I.A. Héctor Estrada', role: 'Líder de gestión operativa', photo: '/assets/team/hector-estrada.jpg' },
 ];
 
 const specialties = [
@@ -63,7 +63,7 @@ const experience = [
       {
         members.map((m) => (
           <div class="members__card">
-            <div class="members__avatar" aria-hidden="true" />
+            <img class="members__avatar" src={m.photo} alt={m.name} width="120" height="120" loading="lazy" />
             <h3 class="members__name">{m.name}</h3>
             <div class="members__role">{m.role}</div>
           </div>
@@ -166,6 +166,8 @@ const experience = [
     border-radius: var(--radius-round);
     border: 1px solid var(--color-border-strong);
     background: var(--color-neutral-100);
+    object-fit: cover;
+    object-position: center top;
   }
   .members__name {
     margin: 0;

@@ -83,11 +83,15 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-4) var(--space-8);
+    padding: var(--space-4) var(--space-6);
+    gap: var(--space-6);
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: none;
     border-bottom: 1px solid var(--color-border);
     height: var(--nav-height);
+  }
+  .nav__logo {
+    flex: 0 0 auto;
   }
   .nav__logo img {
     height: 30px;
@@ -149,6 +153,7 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
   .nav__actions {
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
     gap: var(--space-5);
   }
   .nav__lang {
@@ -216,7 +221,9 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     display: none;
   }
 
-  @media (min-width: 900px) {
+  /* 1180px, not 900px: the logo lockup + 8 links + lang switch + CTA don't fit
+     below this, and the flex row collapses them onto each other. */
+  @media (min-width: 1180px) {
     .nav__links {
       display: flex;
     }
