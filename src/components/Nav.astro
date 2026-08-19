@@ -17,7 +17,7 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
 
 <nav class="nav">
   <a href={`${base}/`} class="nav__logo">
-    <img src="/assets/akai-logo-dark.png" alt="AKAI" width="120" height="30" />
+    <img src="/assets/akai-logo-dark.png" alt="AKAI" width="1575" height="133" />
   </a>
 
   <div class="nav__links">
@@ -94,8 +94,14 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     flex: 0 0 auto;
   }
   .nav__logo img {
+    /* ponytail: the source PNG is 1575x133 (ratio ~11.8), so height:30px renders it
+       355px wide — that pushed .nav__actions (hamburger + lang switch) clean off a
+       390px viewport. Cap the width below the desktop breakpoint instead. */
     height: 30px;
     width: auto;
+    max-width: min(46vw, 200px);
+    object-fit: contain;
+    object-position: left center;
     display: block;
   }
   .nav__links {
@@ -221,6 +227,18 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     display: none;
   }
 
+  @media (max-width: 640px) {
+    /* ponytail: at 320px the logo + gutters + actions overflowed by a few px and
+       pushed the hamburger past the right edge. Tighten the gutter and the cap. */
+    .nav {
+      padding: var(--space-4);
+      gap: var(--space-3);
+    }
+    .nav__logo img {
+      max-width: min(40vw, 170px);
+    }
+  }
+
   /* 1180px, not 900px: the logo lockup + 8 links + lang switch + CTA don't fit
      below this, and the flex row collapses them onto each other. */
   @media (min-width: 1180px) {
@@ -235,6 +253,9 @@ const isActive = (path: string) => (path === '' ? slug === '' : slug === path);
     }
     .nav__mobile {
       display: none !important;
+    }
+    .nav__logo img {
+      max-width: none;
     }
   }
 </style>

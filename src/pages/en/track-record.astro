@@ -223,7 +223,7 @@ const segments = [
   }
   .logos__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
     gap: var(--space-4);
     max-width: var(--content-max-width);
     width: 100%;
@@ -276,7 +276,7 @@ const segments = [
     max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.12);
   }

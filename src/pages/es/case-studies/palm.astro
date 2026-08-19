@@ -113,6 +113,7 @@ const stats = [
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
     background: var(--color-ink);
     display: flex;
@@ -201,7 +202,7 @@ const stats = [
     width: 100%;
     padding: 0 var(--section-padding-x);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--space-10);
     max-width: var(--content-max-width);
     margin: var(--space-14) auto 0;
@@ -318,5 +319,17 @@ const stats = [
     display: inline-block;
     font-size: 18px;
     transform: translateY(1px);
+  }
+
+  @media (max-width: 640px) {
+    /* ponytail: the 260px inset covers most of a phone screen and sits on top of
+       the headline — shrink it and tuck it above the copy. */
+    .hero__inset {
+      width: 140px;
+      height: 88px;
+      bottom: auto;
+      top: calc(var(--nav-height) + 16px);
+      right: var(--section-padding-x);
+    }
   }
 </style>

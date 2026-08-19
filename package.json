@@ -16,5 +16,8 @@
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.6",
     "sirv-cli": "^3.0.1"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }

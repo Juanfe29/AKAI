@@ -28,7 +28,7 @@ const { stats, dark = false } = Astro.props;
     display: grid;
     /* auto-fit, not the fixed-column grid the old StatBlock.jsx documented —
        matches how every live page actually lays these out responsively. */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
     gap: 1px;
     background: var(--color-border);
     max-width: var(--content-max-width);

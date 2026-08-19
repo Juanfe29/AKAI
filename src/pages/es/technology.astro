@@ -235,6 +235,7 @@ const phases = [
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -288,7 +289,7 @@ const phases = [
     max-width: var(--content-max-width);
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.12);
   }
@@ -481,6 +482,10 @@ const phases = [
     width: 100%;
     padding: var(--space-15) var(--section-padding-x) var(--space-11);
     display: flex;
+    /* ponytail: missing direction — intro and table were laid out side by side
+       in a flex row, which overflowed the viewport on mobile. */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
   }
   .trl__intro {
@@ -572,7 +577,7 @@ const phases = [
     max-width: var(--content-max-width);
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 1px;
     background: var(--color-border-strong);
   }
@@ -629,5 +634,22 @@ const phases = [
     font-size: 12px;
     color: var(--color-neutral-400);
     line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    /* ponytail: drop the column minimums so the 3-col table fits instead of
+       pushing the whole page into horizontal scroll. */
+    .trl__table {
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.5fr) minmax(0, 1.4fr);
+    }
+    .trl__th,
+    .trl__td {
+      padding: 12px 10px;
+      overflow-wrap: anywhere;
+    }
+    .dash__frame {
+      height: 62vh;
+      min-height: 340px;
+    }
   }
 </style>

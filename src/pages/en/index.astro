@@ -311,6 +311,7 @@ const sectors = [
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -369,7 +370,7 @@ const sectors = [
   .hero__content {
     position: relative;
     z-index: 2;
-    padding: 0 40px 72px;
+    padding: 0 var(--section-padding-x) 72px;
     max-width: 1020px;
   }
   .hero__logo {
@@ -432,7 +433,7 @@ const sectors = [
 
   .belief {
     width: 100%;
-    padding: 110px 40px;
+    padding: 110px var(--section-padding-x);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -487,7 +488,7 @@ const sectors = [
   }
   .belief__stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 1px;
     background: var(--color-border-strong);
     border: 1px solid var(--color-border-strong);
@@ -525,7 +526,7 @@ const sectors = [
 
   .what {
     width: 100%;
-    padding: 90px 40px;
+    padding: 90px var(--section-padding-x);
     background: var(--color-ink);
   }
   .what__inner {
@@ -560,7 +561,7 @@ const sectors = [
   }
   .what__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.12);
   }
@@ -585,7 +586,7 @@ const sectors = [
 
   .problems {
     width: 100%;
-    padding: 110px 40px;
+    padding: 110px var(--section-padding-x);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -615,7 +616,7 @@ const sectors = [
   }
   .problems__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1px;
     background: var(--color-border);
     width: 100%;
@@ -641,7 +642,7 @@ const sectors = [
 
   .sectors {
     width: 100%;
-    padding: 0 40px 110px;
+    padding: 0 var(--section-padding-x) 110px;
     display: flex;
     flex-direction: column;
     gap: 28px;
@@ -658,7 +659,7 @@ const sectors = [
   }
   .sectors__row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     border: 1px solid var(--color-border);
   }
   .sectors__media {
@@ -738,5 +739,20 @@ const sectors = [
     font-weight: 600;
     color: var(--color-accent);
     margin-top: 4px;
+  }
+
+  @media (max-width: 640px) {
+    /* ponytail: the floating sector panel sat on top of the hero CTAs on phones. */
+    .hero__panel--mobile {
+      right: var(--section-padding-x);
+      bottom: auto;
+      top: calc(var(--nav-height) + 16px);
+      max-width: 52vw;
+      padding: 10px 14px;
+    }
+    .intro__skip {
+      bottom: 20px;
+      right: 20px;
+    }
   }
 </style>

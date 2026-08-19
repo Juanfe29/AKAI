@@ -66,3 +66,12 @@ select:focus-visible,
     transform: translateY(0);
   }
 }
+
+/* ponytail: one site-wide mobile breakpoint. Almost every section is a single-column
+   or auto-fit grid already, so shrinking the gutter token covers most of the layout.
+   The few fixed-column tables override this locally in their own page. */
+@media (max-width: 640px) {
+  :root {
+    --section-padding-x: 20px;
+  }
+}

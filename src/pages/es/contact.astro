@@ -92,6 +92,7 @@ import { dialCodes } from '../../i18n/phone-codes';
     position: relative;
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
     background: var(--color-ink);
     display: flex;
@@ -119,7 +120,7 @@ import { dialCodes } from '../../i18n/phone-codes';
     margin: 0 auto;
     padding: calc(var(--nav-height) + var(--space-13)) var(--section-padding-x) var(--space-13);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: var(--space-10);
   }
   .hero__head {
