@@ -65,6 +65,9 @@ import { dialCodes } from '../../i18n/phone-codes';
             <label for="contact-message" class="form__label">Mensaje</label>
             <textarea id="contact-message" name="message" rows="4" required class="form__input"></textarea>
           </div>
+          <p class="form__error" data-contact-error role="alert" hidden>
+            No pudimos enviar tu mensaje. Inténtalo de nuevo en unos minutos.
+          </p>
           <button type="submit" class="form__submit">Solicita una reunión</button>
         </form>
 
@@ -78,13 +81,7 @@ import { dialCodes } from '../../i18n/phone-codes';
 </BaseLayout>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
-  const thanks = document.querySelector<HTMLElement>('[data-contact-thanks]');
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    form.hidden = true;
-    if (thanks) thanks.hidden = false;
-  });
+  import '../../scripts/contact-form';
 </script>
 
 <style>
@@ -196,6 +193,15 @@ import { dialCodes } from '../../i18n/phone-codes';
     border: none;
     border-radius: var(--radius-sharp);
     cursor: pointer;
+  }
+  .form__submit:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+  .form__error {
+    margin: 0;
+    font-size: 14px;
+    color: #b42318;
   }
 
   .thanks {

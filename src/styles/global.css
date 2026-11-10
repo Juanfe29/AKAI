@@ -31,6 +31,11 @@ video {
   display: block;
 }
 
+/* Component `display` rules otherwise override the `hidden` attribute. */
+[hidden] {
+  display: none !important;
+}
+
 /* Every interactive element gets a visible focus ring — none existed in the original build. */
 a:focus-visible,
 button:focus-visible,
